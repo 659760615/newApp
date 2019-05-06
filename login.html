@@ -1,0 +1,109 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="zlys/css/style.css" />
+		<link rel="stylesheet" href="zlys/css/index.css" />
+		<link href="zlys/css/iconfont/Rjdaoico.css" rel="stylesheet" type="text/css">
+		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+		<script type="text/javascript" src="zlys/js/slider.js"></script>
+		<!--下拉动画-->
+		<link rel="stylesheet" href="zlys/css/animate.min.css" />
+		<script type="text/javascript" src="zlys/js/wow.min.js"></script>
+		<!-- zlys -->
+		<script type="text/javascript" src="js/zlys.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<link rel="stylesheet" href="css/layer.css" />
+		<style>
+			.mui-toast-container {
+				line-height: 17px;
+				position: fixed;
+				z-index: 9999;
+				bottom: 50px;
+				left: 50%;
+				-webkit-transition: opacity .3s;
+				transition: opacity .3s;
+				-webkit-transform: translate(-50%, 0);
+				transform: translate(-50%, 0);
+				opacity: 0
+			}
+			
+			.mui-toast-container.mui-active {
+				opacity: .9
+			}
+			
+			.mui-toast-message {
+				font-size: 14px;
+				padding: 10px 25px;
+				text-align: center;
+				color: #fff;
+				border-radius: 6px;
+				background-color: #323232
+			}
+		</style>
+	</head>
+	<body>
+		<div class="log-logo">
+			<img src="zlys/images/car.png" width="80" height="80">
+		</div>
+		<div class="aui-code-box">
+			<div class="aui-code-line">
+				<input type="text" class="aui-code-line-input" name="username" value="" id="phone" autocomplete="off" placeholder="请输入手机号" />
+			</div>
+			<div class="aui-code-line aui-code-line-clear" style="margin-bottom:20px;">
+				<i class="aui-show operate-eye-open"></i>
+				<input type="password" name="password" class="aui-code-line-input password" placeholder="请输入身份证后六位" value="" id="id">
+			</div>
+			<input type="button" class="aui-code-btn" value="登 录" style="background: #5f85cf;" onclick="login()">
+		</div>
+		<div style="margin-left: 25%;margin-top: 75%;">copyrigiht@四川智链云数科技有限公司</div>
+		<script>
+			mui.init();
+		</script>
+		<script type="text/javascript">
+			$('.aui-show').click(function() {
+				let pass_type = $('input.password').attr('type');
+
+				if (pass_type === 'password') {
+					$('input.password').attr('type', 'text');
+					$('.aui-show').removeClass('operate-eye-open').addClass('operate-eye-close');
+				} else {
+					$('input.password').attr('type', 'password');
+					$('.aui-show').removeClass('operate-eye-close').addClass('operate-eye-open');
+				}
+			})
+		</script>
+		<script>
+			var phone = localStorage.getItem("phone");
+			var id = localStorage.getItem("id");
+			if (phone != null) {
+				$("#phone").val(phone);
+				$("#id").val(id);
+			}
+
+			function login() {
+				var phone = $("#phone").val();
+				var id = $("#id").val();
+				$.post(initUrl + "/app/driver/login", {
+					phone: phone,
+					id: id
+				}, function(obj) {
+					if (obj.state == 1) {
+						localStorage.setItem("phone", phone);
+						localStorage.setItem("id", id);
+						muiHref("index.html")
+					} else {
+						mui.toast('登陆失败', {
+							duration: '1',
+							type: 'div'
+						})
+					}
+				})
+
+			}
+		</script>
+	</body>
+</html>

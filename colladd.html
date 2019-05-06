@@ -1,0 +1,222 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<link rel="stylesheet" href="zlys/css/style.css" />
+		<link rel="stylesheet" href="zlys/css/ydui.css" />
+		<link rel="stylesheet" href="zlys/css/index.css" />
+		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+		<script type="text/javascript" src="zlys/js/slider.js"></script>
+		<!-- zlys -->
+		<script type="text/javascript" src="js/zlys.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<link rel="stylesheet" href="css/layer.css" />
+		<link href="zlys/css/iconfont/Rjdaoico.css" rel="stylesheet" type="text/css">
+		
+		<script type="text/javascript" src="js/common.js"></script>
+
+	</head>
+	<body>
+		<!---头部 开始 --->
+		<div class="public-nav">
+			<div class="bw">
+				<a href="javascript:void(0);" onclick="index()" class="l"><i class="icon-e903"></i></a>
+			</div>
+		</div>
+		<div class="h-height"></div>
+		<!---头部 结束 --->
+
+		<div class="index-main">
+			<form id="form1" name="form1" method="post" action="" onsubmit="return check2();">
+				<h5></h5>
+				<h2>餐厨垃圾登记</h2>
+					<div class="butDiv">
+						<input type="reset" name="button" class="button" value="扫一扫" onclick="scan()">
+					</div>
+
+				<div class="infoframe">
+					<dl>客户姓名</dl>
+					<div class="right">
+						<input type="text" id="name" placeholder="请输入客户姓名" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>联系电话</dl>
+					<div class="right">
+						<input type="text" name="cardId" placeholder="请输入客户联系电话" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+
+				<div class="infoframe">
+					<dl>所在城市</dl>
+					<div class="right">
+						<input type="text" name="addCity" placeholder="选择客户所在城市" autocomplete="off" class="inputs" value="浙江 杭州市 萧山区"
+						 readonly id="J_Address">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>详细地址</dl>
+					<div class="right">
+						<input type="text" name="address" placeholder="请输入维修详细地址" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>报修时间</dl>
+					<div class="right">
+						<input type="text" name="Birthday" id="demo_date1" placeholder="请选择报修时间" class="inputs" />
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>产品类型</dl>
+					<div class="right">
+						<select id="demo_select1">
+							<option value="">请选择维修设备</option>
+							<option value="1">洗衣机</option>
+							<option value="2">冰箱</option>
+							<option value="3">空调</option>
+							<option value="4">电视</option>
+							<option value="5">电风扇</option>
+							<option value="6">音响</option>
+							<option value="7">电脑</option>
+							<option value="8">手机</option>
+							<option value="9">其他</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>产品型号</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入产品型号" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>产品条形码</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入产品条形码" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>购买时间</dl>
+					<div class="right">
+						<input type="text" name="Birthday2" id="demo_date2" placeholder="请选择购买产品时间" class="inputs" />
+					</div>
+				</div>
+
+
+				<div class="infoframe">
+					<dl>维修时间</dl>
+					<div class="right">
+						<input type="text" name="Birthday3" id="demo_date3" placeholder="请选择维修时间" class="inputs" />
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>报修项目</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入维修项目/故障说明" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>维修内容</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入维修内容" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>实际公里</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入上门公里数" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>路补</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入上门公里补贴费用" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>维修费用</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入维修费用" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>上门费用</dl>
+					<div class="right">
+						<select id="demo_select1">
+							<option value="0">不需要</option>
+							<option value="5">5元</option>
+							<option value="10">10元</option>
+							<option value="15">15元</option>
+							<option value="20">20元</option>
+							<option value="30">30元</option>
+							<option value="40">40元</option>
+							<option value="50">50元</option>
+							<option value="60">60元</option>
+							<option value="70">70元</option>
+							<option value="80">80元</option>
+							<option value="90">90元</option>
+							<option value="100">100元</option>
+						</select>
+					</div>
+				</div>
+
+				<div class="infoframe">
+					<dl>搬运费</dl>
+					<div class="right">
+						<input type="text" name="tel" placeholder="请输入搬运费" autocomplete="off" class="inputs" value="">
+					</div>
+				</div>
+
+				<h5 style="margin-top:15px;">合计金额：<span style="color:#F30;font-size:14px;">￥</span><span style="color:#F30;font-size:18px;">2356.00</span></h5>
+				<h4>
+					<p>办公时间 周一至周五 （国定节假日除外）</p>
+				</h4>
+
+				<div class="butDiv" style="margin-top:20px;">
+					<input type="button" class="button" title="Sign In" value="提交报修" onclick="window.open('index1-6.html')">
+					<input type="reset" name="button" class="button2" value="重置">
+				</div>
+			</form>
+
+		</div>
+	</body>
+	<script>
+		function scan(){
+			createWithoutTitle('scan.html', {
+				titleNView:{
+					type: 'float',
+					backgroundColor: 'rgba(215,75,40,0.3)',
+					titleText: '扫一扫',
+					titleColor: '#4769a9',
+					autoBackButton: true,
+					buttons: [{
+						fontSrc: '_www/helloh5.ttf',
+						text: '\ue302',
+						fontSize: '18px',
+						onclick: 'javascript:scanPicture()'
+					}]
+				}
+			});
+		}
+		
+		function scaned(t, r, f){
+			$("#name").val(r);
+		}
+	</script>
+</html>
