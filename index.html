@@ -1,163 +1,99 @@
-<!doctype html>
-<html>
-	<head>
-		<meta charset="utf-8">
-		<title>童长东后台</title>
-		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-		<link rel="stylesheet" href="zlys/css/style.css" />
-		<link rel="stylesheet" href="zlys/css/index.css" />
-		<link href="zlys/css/iconfont/Rjdaoico.css" rel="stylesheet" type="text/css">
-		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
-		<script type="text/javascript" src="zlys/js/slider.js"></script>
-		<script type="text/javascript" src="zlys/js/jquery.countUp.js"></script>
-		<link rel="stylesheet" type="text/css" href="zlys/css/swiper.min.css" />
-		<script type="text/javascript" src="zlys/js/swiper.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="css/mui.min.css" />
-		<!-- zlys -->
-		<script type="text/javascript" src="js/zlys.js"></script>
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="js/layer.js"></script>
-		<link rel="stylesheet" href="css/layer.css" />
-	</head>
-
-	<body>
-		<!---头部 开始 --->
-		<div class="ui-header">
-			<div class="infostrip">
-				<div class="bw">
-					<!-- <a href="user_setup.html" class="r"><i class="icon-e914"></i></a> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+	<title></title>
+	<link rel="stylesheet" href="index/css/ui.css">
+	<!-- zlys -->
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<link rel="stylesheet" href="css/layer.css" />
+</head>
+<body class="android">
+	<div class="content" style="/*box-shadow: rgba(0, 0, 0, .50) 0 0 10px;transform: translate(50%, 0px);*/">
+		<div class="scroll-content dwz-scroll" >
+			<div class="scroll">
+				<div class="m-panel">
+					<div class="panel-header">
+						<label class="panel-title" style="margin-left: 43%;">中科绵投</label>
+					</div>
+					<div class="panel-content">
+						<div class="grids-contant">
+							<a class="grids-grid"  href="javascript:void(0);" onclick="colladd()">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-12.png" alt=""></div>
+								<p class="grids-grid-label">收运登记</p>
+							</a>
+							<a class="grids-grid" href="service_rescue.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-11.png" alt=""></div>
+								<p class="grids-grid-label">紧急救援</p>
+							</a>
+							<a class="grids-grid"  rel="service_violation" href="service_violation.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-10.png" alt=""></div>
+								<p class="grids-grid-label">违章代缴</p>
+							</a>
+							<a class="grids-grid" href="my-featured.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-9.png" alt=""></div>
+								<p class="grids-grid-label">推荐购车</p>
+							</a>
+							<a class="grids-grid" href="service_appoin.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-8.png" alt=""></div>
+								<p class="grids-grid-label">预约维修</p>
+							</a>
+							<a class="grids-grid" href="service-dealers.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-7.png" alt=""></div>
+								<p class="grids-grid-label">经销商查询</p>
+							</a>
+							<a class="grids-grid" href="anti-fake.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-s-17.png" alt=""></div><!-- 更换图标  -->
+								<p class="grids-grid-label">配件防伪</p>
+							</a>
+							<a class="grids-grid" href="service_insurance.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-5.png" alt=""></div>
+								<p class="grids-grid-label">保险服务</p>
+							</a>
+							<a class="grids-grid" href="service_traffic.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-4.png" alt=""></div>
+								<p class="grids-grid-label">限行查询</p>
+							</a>
+							<a class="grids-grid" href="service_financial.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-3.png" alt=""></div>
+								<p class="grids-grid-label">金融服务</p>
+							</a>
+							<a class="grids-grid" href="gas-station.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-2.png" alt=""></div>
+								<p class="grids-grid-label">附近加油站</p>
+							</a>
+							<a class="grids-grid" href="gas-station.html">
+								<div class="grids-grid-icon"><img src="index/images/icon-png/icon-y-1.png" alt=""></div>
+								<p class="grids-grid-label">购车计算</p>
+							</a>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="userinfo">
-				<a href="" class="portrait"><img src="zlys/images/person.png"></a>
-				<div class="info">
-					<dl style="margin-top:8px;" id="name"><span>姓名：</span></dl>
-					<dl id="phone"><span>绑定手机：</span></dl>
-				</div>
-			</div>
-
-			<div class="userdata">
-				<div class="it" style="width: 200px;"><span>排班时间</span><em id="start"></em></div>
-				<div class="it"><span>当前状态</span><em id="msg"></em></div>
 			</div>
 		</div>
-		<!---头部 结束 --->
-		<div class="user-icolist">
-			<a href="javascript:void(0);" onclick="colladd()" class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e918 c1"></i>
-					<span>餐厨垃圾登记</span>
-				</div>
-				<div class="comr">
-					<i class="icon-e902"></i>
-				</div>
-			</a>
-			<a href="user_no_workorder.html" class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e911 c2"></i>
-					<span>未完成工单</span>
-				</div>
-				<div class="comr">
-					<span style="color:#F30;">6</span>
-					<i class="icon-e902"></i>
-				</div>
-			</a>
-			<!---
-    <a href="user_ok_workorder.html" class="item-name">
-    	<div class="coml wow lightSpeedIn">
-        	<i class="icon-e90f c5"></i>
-            <span>已完成工单</span>
-        </div>
-        <div class="comr">
-            <span>167单</span>
-			<i class="icon-e902"></i>
-        </div>
-    </a>
-    --->
-			<a href="user_nopay_workorder.html" class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e910 c3"></i>
-					<span>未结算工单</span>
-				</div>
-				<div class="comr">
-					<span style="color:#F30;">26</span>
-					<i class="icon-e902"></i>
-				</div>
-			</a>
 
-			<a href="user_okpay_workorder.html" class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e912 c4"></i>
-					<span>已结算工单</span>
-				</div>
-				<div class="comr">
-					<span>167单</span>
-					<i class="icon-e902"></i>
-				</div>
-			</a>
-
-			<a href="user_telbook.html" class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e915 c9"></i>
-					<span>电话簿</span>
-				</div>
-				<div class="comr">
-					<span>1260个电话记录</span>
-					<i class="icon-e902"></i>
-				</div>
-			</a>
-
-			<a href="javascript:void(0);" onclick="setup()" class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e914 c8"></i>
-					<span>信息</span>
-				</div>
-				<div class="comr">
-					<span>个人信息</span>
-					<i class="icon-e902"></i>
-				</div>
-			</a>
-
-			<a class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e90d c2"></i>
-					<span>帮助中心</span>
-				</div>
-				<div class="comr">
-					<i class="icon-e902"></i>
-				</div>
-			</a>
-
-			<a href="user_about.html" class="item-name">
-				<div class="coml wow lightSpeedIn">
-					<i class="icon-e900 c7"></i>
-					<span>关于我们</span>
-				</div>
-				<div class="comr">
-					<span style="color:#F60">在线客服</span>
-					<i class="icon-e902"></i>
-				</div>
-			</a>
-		</div>
-		<a href="javascript:void(0);" onclick="loginOut()" class="MoreBut2 wow zoomInDown"> 注销用户 </a>
-		<script>
-			$(function() {
-				$.post(initUrl + "/app/driver/index", {}, function(obj) {
-					if (obj.state == 0) {
-						muiHref("login.html");
-					}
-					$("#name").html("<span>姓名：</span>" + obj.other.name);
-					$("#phone").html("<span>绑定手机：</span>" + obj.other.phone);
-					$("#start").html(obj.other.startTime + "-" + obj.other.endTime);
-					$("#msg").html(obj.msg);
-				})
-			})
-			function setup(){
-				muiHref("setup.html");
-			}
-			function colladd(){
-				muiHref("colladd.html");
-			}
-		</script>
-	</body>
+	</div>
+	<!-- <div class="tab-bar tab-bottom">
+		<a class="tab-button " href="index.html"><i class="tab-button-icon icon icon-home"></i><span class="tab-button-txt">首页</span></a>
+		<a class="tab-button " href="forum.html"><i class="tab-button-icon icon icon-exhibition" style="background-size:30px"></i><span class="tab-button-txt">论坛</span></a>
+		<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">找车</span></a>
+		<a class="tab-button active" href="service-list.html"><i class="tab-button-icon icon icon-service"></i><span class="tab-button-txt">服务</span></a>
+		<a class="tab-button " href="my.html"><i class="tab-button-icon icon icon-my"></i><span class="tab-button-txt">我的</span></a>
+	</div> -->
+	<div class="tab-bar tab-bottom">
+		<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span class="tab-button-txt">首页</span></a>
+		<a class="tab-button " href="forum.html"><i class="tab-button-icon icon icon-exhibition" style="background-size:30px"></i><span class="tab-button-txt">论坛</span></a>
+		<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">找车</span></a>
+		<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-my"></i><span class="tab-button-txt">我的</span></a>
+	</div>
+</body>
+<script>
+	function colladd(){
+		muiHref("colladd.html");
+	}
+</script>
+<script>
+</script>
 </html>
