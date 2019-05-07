@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="index/css/ui.css">
+		<!-- zlys -->
+		<script type="text/javascript" src="js/zlys.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<link rel="stylesheet" href="css/layer.css" />
+		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script src="js/mui.min.js"></script>
+	</head>
+	<body class="android">
+		<div class="scroll-content">
+			<div class="scroll">
+				<div class="header home-header">
+					<div class="toolbar statusbar-padding active" style="margin-top: 2.3%;">
+						<button class="bar-button current-city" onclick="index()"><i class="icon icon-newback" style="right: 40%;"></i></button>
+					</div>
+				</div>
+				<div class="my-info" style="margin-top: -160px;">
+					<div class="my-info-background" style="background-color:#3490dc; -webkit-filter:blur(0px)"></div>
+					<span class="my-vip" style="background:none;font-weight: bolder;">收运登记</span>
+				</div>
+
+				<div class="m-panel">
+					<div class="item-inquiry b-line"><button class="item-inquiry-btn " onclick="scan()">扫一扫</button></div>
+
+					<div>
+						<div class="list">
+							<div class="item">
+								<div class="item-content">
+									<label class="name">商户名称:</label>
+									<input class="input" type="text" disabled="disabled" id="name">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">车辆终端号:</label>
+									<input class="input" type="text" disabled="disabled" id="deviceSerial">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">颜色:</label>
+									<input class="input" type="text" disabled="disabled" id="colour">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">厂家:</label>
+									<input class="input" type="text" disabled="disabled" id="manufacturer">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">型号:</label>
+									<input class="input" type="text" disabled="disabled" id="type">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">载重量(t):</label>
+									<input class="input" type="text" disabled="disabled" id="loadCapacity">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">车自重:</label>
+									<input class="input" type="text" disabled="disabled" id="weight">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">购买时间:</label>
+									<input class="input" type="text" disabled="disabled" id="purchasingDate">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">初始公里:</label>
+									<input class="input" type="text" disabled="disabled" id="initialMileage">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">备注信息:</label>
+									<input class="input" type="text" disabled="disabled" id="remark">
+								</div>
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+			<div class="tab-bar tab-bottom">
+				<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+					 class="tab-button-txt">首页</span></a>
+				<a class="tab-button " href="forum.html"><i class="tab-button-icon icon icon-exhibition" style="background-size:30px"></i><span
+					 class="tab-button-txt">论坛</span></a>
+				<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">找车</span></a>
+				<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-my"></i><span
+					 class="tab-button-txt">我的</span></a>
+			</div>
+	</body>
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	
+	<script>
+		function scan(){
+			createWithoutTitle('scan.html', {
+				titleNView:{
+					type: 'float',
+					backgroundColor: 'rgba(71,105,169,0.3)',
+					titleText: '扫一扫',
+					titleColor: '#4769a9',
+					autoBackButton: true,
+					buttons: [{
+						fontSrc: '_www/helloh5.ttf',
+						text: '\ue302',
+						fontSize: '18px',
+						onclick: 'javascript:scanPicture()'
+					}]
+				}
+			});
+		}
+		
+		function scaned(t, r, f){
+			$("#name").val(r);
+		}
+	</script>
+</html>
