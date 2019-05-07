@@ -4676,3 +4676,19 @@ tbody td.on {
   bottom: 0;
   left: 0;
 }
+.icon-newback{
+	background-image: url(../../zlys/images/back.png);
+	background-size: 20px;
+}
+
+.icon-newperson{
+	background-image: url(../../zlys/images/geren.png);
+	background-size: 15px;
+}
+.icon-tz{
+	background-image: url(../../images/tz.png);
+}
+
+.icon-tz2{
+	background-image: url(../../images/tz2.png);
+}
