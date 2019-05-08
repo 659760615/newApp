@@ -1,10 +1,10 @@
 // var initUrl = "http://39.98.91.180:80";
 
-var initUrl = "http://192.168.0.102:80";
+var initUrl = "http://192.168.1.21:80";
 
 // var initUrl = "http://192.168.3.4:80";
 
-function zlyslay(obj){
+function zlyslay(obj) {
 	layer.open({
 		content: obj.msg,
 		skin: 'msg',
@@ -12,29 +12,90 @@ function zlyslay(obj){
 	});
 }
 
-function muiHref(obj){
-	//loading�
-    layer.open({type: 2});
-	setTimeout(function(){window.location.href = obj},390)
+function muiHref(obj) {
+	layer.open({
+		type: 2
+	});
+	setTimeout(function() {
+		window.location.href = obj
+	}, 390)
 }
 
-function loginOut(){
-	$.post(initUrl+"/app/driver/loginOut",{},function(){
+function loginOut() {
+	$.post(initUrl + "/app/driver/loginOut", {}, function() {
 		muiHref("login.html");
 	})
 }
-function my(){
+
+function my() {
 	muiHref("my.html");
 }
-function index(){
+
+function index() {
 	muiHref("index.html");
 }
-function person(){
+
+function person() {
 	muiHref("person.html");
 }
-function mycar(){
+
+function mycar() {
 	muiHref("mycar.html");
 }
-function add(){
+
+function add() {
 	muiHref("add.html");
+}
+
+function bj() {
+	muiHref("bj.html");
+}
+
+function bz() {
+	muiHref("bz.html");
+}
+
+function clear_pwd() {
+	muiHref("clear.html");
+}
+
+
+
+
+
+//格式化CST日期的字串
+function formatCSTDate(strDate, format) {
+	return formatDate(new Date(strDate), format);
+}
+
+//格式化日期,
+function formatDate(date, format) {
+	var paddNum = function(num) {
+		num += "";
+		return num.replace(/^(\d)$/, "0$1");
+	}
+	//指定格式字符
+	var cfg = {
+		yyyy: date.getFullYear() //年 : 4位
+			,
+		yy: date.getFullYear().toString().substring(2) //年 : 2位
+			,
+		M: date.getMonth() + 1 //月 : 如果1位的时候不补0
+			,
+		MM: paddNum(date.getMonth() + 1) //月 : 如果1位的时候补0
+			,
+		d: date.getDate() //日 : 如果1位的时候不补0
+			,
+		dd: paddNum(date.getDate()) //日 : 如果1位的时候补0
+			,
+		hh: date.getHours() //时
+			,
+		mm: date.getMinutes() //分
+			,
+		ss: date.getSeconds() //秒
+	}
+	format || (format = "yyyy-MM-dd hh:mm:ss");
+	return format.replace(/([a-z])(\1)*/ig, function(m) {
+		return cfg[m];
+	});
 }

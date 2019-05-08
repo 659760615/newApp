@@ -12,7 +12,7 @@
 		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 	</head>
 	<body class="android">
-		<div class="scroll-content">
+		<div class="scroll-content" id="person">
 			<div class="scroll">
 				<div class="header home-header">
 					<div class="toolbar statusbar-padding active" style="margin-top: 2.3%;">
@@ -20,7 +20,7 @@
 					</div>
 				</div>
 				<div class="my-info" style="margin-top: -160px;">
-					<div class="my-info-background" style="background-color:#3490dc; -webkit-filter:blur(0px)"></div>
+					<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
 					<span class="my-vip" style="background:none;font-weight: bolder;">司机信息</span>
 				</div>
 				<div>
@@ -28,85 +28,84 @@
 						<div class="item">
 							<div class="item-content">
 								<label class="name">司机姓名:</label>
-								<input class="input" type="text" disabled="disabled" id="name">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.name">
 							</div>
 						</div>
 						<div class="item">
 							<div class="item-content">
 								<label class="name">性别:</label>
-								<input class="input" type="text" disabled="disabled" id="sex">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.sex">
 							</div>
 						</div>
 						<div class="item">
 							<div class="item-content">
 								<label class="name">类型:</label>
-								<input class="input" type="text" disabled="disabled" id="type">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.type">
 							</div>
 						</div>
 						<div class="item">
 							<div class="item-content">
 								<label class="name">电话:</label>
-								<input class="input" type="text" disabled="disabled" id="phone">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.phone">
 							</div>
 						</div>
 						<div class="item">
 							<div class="item-content">
 								<label class="name">身份证号:</label>
-								<input class="input" type="text" disabled="disabled" id="id">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.id">
 							</div>
 						</div>
 						<div class="item">
 							<div class="item-content">
 								<label class="name">部门:</label>
-								<input class="input" type="text" disabled="disabled" id="department">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.department">
 							</div>
 						</div>
 						<div class="item">
 							<div class="item-content">
 								<label class="name">排班车牌号:</label>
-								<input class="input" type="text" disabled="disabled" id="code">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.deviceSerial">
 							</div>
 						</div>
 						<div class="item">
 							<div class="item-content">
 								<label class="name">排班时间:</label>
-								<input class="input" type="text" disabled="disabled" id="time">
+								<input class="input" type="text" disabled="disabled" v-model="object.other.startTime + '-'+object.other.endTime">
 							</div>
 						</div>
 					</div>
 				</div>
-
-
 			</div>
 		</div>
-		<div class="tab-bar tab-bottom">
-			<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+		<div class="tab-bar tab-bottom" >
+			<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
 				 class="tab-button-txt">首页</span></a>
-			<a class="tab-button " href="forum.html"><i class="tab-button-icon icon icon-exhibition" style="background-size:30px"></i><span
-				 class="tab-button-txt">论坛</span></a>
-			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">找车</span></a>
-			<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-my"></i><span
-				 class="tab-button-txt">我的</span></a>
+			<a class="tab-button" href="forum.html"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
+				 class="tab-button-txt">通知</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
 		</div>
 	</body>
 	<script type="text/javascript" src="js/zlys.js"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script type="text/javascript" src="js/vue.js"> </script>
 	<script>
-		$(function() {
-			$.post(initUrl + "/app/driver/person", {}, function(obj) {
-				if (obj.state == 0) {
-					muiHref("login.html");
-				}
-				$("#name").val(obj.other.name);
-				$("#sex").val(obj.other.sex);
-				$("#phone").val(obj.other.phone);
-				$("#type").val(obj.other.type);
-				$("#id").val(obj.other.idCrad);
-				$("#department").val(obj.other.department);
-				$("#code").val(obj.other.deviceSerial);
-				$("#time").val(obj.other.startTime+"-"+obj.other.endTime);
-			})
-		})
+		var my = new Vue({
+			el: '#person',
+			data: {
+				object: [],
+			},
+			created: function() {
+				var self = this;
+				$.post(initUrl + "/app/driver/person", {}, function(obj) {
+					if (obj.state == 0) {
+						muiHref("login.html");
+					}
+					self.object = obj;
+				})
+			},
+		});
 	</script>
 </html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="index/css/ui.css">
+		<!-- zlys -->
+		<script type="text/javascript" src="js/zlys.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<link rel="stylesheet" href="css/layer.css" />
+		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	</head>
+
+	<body class="android">
+		<div class="scroll-content">
+			<div class="scroll">
+				<div class="header home-header">
+					<div class="toolbar statusbar-padding active" style="margin-top: 2.3%;">
+						<button class="bar-button current-city" onclick="my()"><i class="icon icon-newback" style="right: 40%;"></i></button>
+					</div>
+				</div>
+				<div class="my-info" style="margin-top: -160px;">
+					<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
+					<span class="my-vip" style="background:none;font-weight: bolder;">设置</span>
+				</div>
+				<div>
+					<div class="item-inquiry b-line"><button class="item-inquiry-btn" style="background-color: #cdeff8;" onclick="clearAll()">清理缓存</button></div>
+				</div>
+
+
+			</div>
+		</div>
+		<div class="tab-bar tab-bottom">
+			<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				 class="tab-button-txt">首页</span></a>
+			<a class="tab-button" href="forum.html"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
+				 class="tab-button-txt">通知</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz1"
+				 style="background-size:25px"></i><span class="tab-button-txt">设置</span></a>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script>
+		function clearAll() {
+			layer.open({
+				content: '您确定要清理缓存并退出登录吗？',
+				btn: ['清理', '不要'],
+				yes: function(index) {
+					localStorage.removeItem('phone');
+					localStorage.removeItem('id');
+					loginOut();
+				}
+			});
+		}
+	</script>
+</html>

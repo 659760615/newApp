@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="index/css/ui.css">
+		<!-- zlys -->
+		<script type="text/javascript" src="js/zlys.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<link rel="stylesheet" href="css/layer.css" />
+		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+		<script type="text/javascript" src="js/common.js"></script>
+		<script src="js/mui.min.js"></script>
+		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
+
+	</head>
+	<body class="android">
+		<div class="scroll-content">
+			<div class="scroll">
+				<div class="header home-header">
+					<div class="toolbar statusbar-padding active" style="margin-top: 2.3%;">
+						<button class="bar-button current-city" onclick="index()"><i class="icon icon-newback" style="right: 40%;"></i></button>
+					</div>
+				</div>
+				<div class="my-info" style="margin-top: -160px;">
+					<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
+					<span class="my-vip" style="background:none;font-weight: bolder;">平台报警</span>
+				</div>
+
+				<div id="allmap" class="dwz-bmap" style="height: 200px; overflow:hidden">
+				</div>
+
+				<div class="panel-content item-urgent item-urgent-s t-line">
+					<a class="panel-cont-finance  " href="tel:122">
+						<div class="panel-cont-left"><img src="index/images/icon-png/icon-xiu-iphone1.png" width="40" alt=""></div>
+						<div class="panel-cont-right">
+							<h2>122报警</h2>
+							<h3>全国道路交通事故报警台</h3>
+						</div>
+					</a>
+					<a class="panel-cont-finance" href="tel:400-000-1111">
+						<div class="panel-cont-left"><img src="images/p3.png" width="40" alt=""></div>
+						<div class="panel-cont-right">
+							<h2>平台救援电话</h2>
+							<h3>400-000-1111</h3>
+						</div>
+					</a>
+					<a class="panel-cont-finance" href="tel:400-000-1111">
+						<div class="panel-cont-left"><img src="index/images/icon-png/icon-xiu-iphone2.png" width="40" alt=""></div>
+						<div class="panel-cont-right">
+							<h2>平台咨询电话</h2>
+							<h3>400-000-1111</h3>
+						</div>
+					</a>
+				</div>
+			</div>
+		</div>
+		<div class="tab-bar tab-bottom" >
+			<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				 class="tab-button-txt">首页</span></a>
+			<a class="tab-button" href="forum.html"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
+				 class="tab-button-txt">通知</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");
+	var point = new BMap.Point(104.686135,31.461589);
+	map.centerAndZoom(point,12);
+
+	var geolocation = new BMap.Geolocation();
+	geolocation.getCurrentPosition(function(r){
+		if(this.getStatus() == BMAP_STATUS_SUCCESS){
+			var mk = new BMap.Marker(r.point);
+			map.addOverlay(mk);
+			map.panTo(r.point);
+		}
+	},{enableHighAccuracy: true})
+</script>
+</html>

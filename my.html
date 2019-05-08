@@ -16,35 +16,15 @@
 		<div class="scroll-content">
 			<div class="scroll">
 				<div class="my-info" style="margin-top: -160px;">
-					<div class="my-info-background" style="background-color:#3490dc; -webkit-filter:blur(0px)"></div>
+					<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
 					<span class="my-vip" style="background:none;font-weight: bolder;">个人中心</span>
 				</div>
 				<div>
 					<div class="aui-list-cells">
-						<a href="javascript:;" class="aui-list-cell" onclick="person()">
-							<div class="aui-list-cell-fl"><img src="zlys/images/gr.png"></div>
-							<div class="aui-list-cell-cn">我的信息</div>
-							<div class="aui-list-cell-fr" id="name"></div>
-						</a>
-						<a href="javascript:;" class="aui-list-cell" onclick="mycar()">
-							<div class="aui-list-cell-fl"><img src="zlys/images/mycar.png"></div>
-							<div class="aui-list-cell-cn">车辆信息</div>
-							<div class="aui-list-cell-fr" id="car"></div>
-						</a>
-						<a href="javascript:;" class="aui-list-cell">
-							<div class="aui-list-cell-fl"><img src="index/images/icon-png/icon-n-2.png"></div>
-							<div class="aui-list-cell-cn">车辆信息</div>
-							<div class="aui-list-cell-fr">未认证</div>
-						</a>
-						<a href="javascript:;" class="aui-list-cell">
-							<div class="aui-list-cell-fl"><img src="index/images/icon-png/icon-n-3.png"></div>
-							<div class="aui-list-cell-cn">我的订单</div>
-							<div class="aui-list-cell-fr"></div>
-						</a>
-						<a href="javascript:;" class="aui-list-cell">
-							<div class="aui-list-cell-fl"><img src="index/images/icon-png/icon-n-4.png"></div>
-							<div class="aui-list-cell-cn">每日任务</div>
-							<div class="aui-list-cell-fr"></div>
+						<div class="devider b-line"></div>
+						<a href="javascript:void(0);"  class="aui-list-cell" onclick="clear_pwd()">
+							<div class="aui-list-cell-fl"><img src="images/set.png"></div>
+							<div class="aui-list-cell-cn">设置</div>
 						</a>
 						<div class="devider b-line"></div>
 						<a href="javascript:;" class="aui-list-cell">
@@ -58,55 +38,29 @@
 							<div class="aui-list-cell-fr"></div>
 						</a>
 						<div class="devider b-line"></div>
-						<a href="javascript:;" class="aui-list-cell">
-							<div class="aui-list-cell-fl"><img src="index/images/icon-png/icon-n-7.png"></div>
-							<div class="aui-list-cell-cn">我的收藏</div>
-							<div class="aui-list-cell-fr"></div>
-						</a>
-						<a href="javascript:;" class="aui-list-cell">
-							<div class="aui-list-cell-fl"><img src="index/images/icon-png/icon-n-8.png"></div>
-							<div class="aui-list-cell-cn">浏览历史</div>
-							<div class="aui-list-cell-fr"></div>
-						</a>
-						<div class="devider b-line"></div>
-
-
-						<div class="devider b-line"></div>
 						<a href="javascript:;" class="aui-list-cell" onclick="loginOut()">
 							<div class="aui-list-cell-fl" style="margin-left: 3px;"><img src="index/images/icon-png/out.png"></div>
 							<div class="aui-list-cell-cn">退出</div>
 							<div class="aui-list-cell-fr"></div>
 						</a>
 						<div class="devider b-line"></div>
-
 					</div>
 				</div>
 
 
 			</div>
 		</div>
-		<div class="tab-bar tab-bottom">
+		<div class="tab-bar tab-bottom" >
 			<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="forum.html"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
 				 class="tab-button-txt">通知</span></a>
-			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">找车</span></a>
-			<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-my"></i><span
-				 class="tab-button-txt">我的</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz1" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
 		</div>
 	</body>
 	<script type="text/javascript" src="js/zlys.js"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
-	<script>
-		$(document).ready(function() {
-			$.post(initUrl + "/app/driver/index", {}, function(obj) {
-				if (obj.state == 0) {
-					muiHref("login.html");
-				}
-				$("#name").html(obj.other.name);
-				$("#car").html(obj.msg);
-			})
-		})
-	</script>
 </html>

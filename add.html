@@ -9,9 +9,16 @@
 		<script type="text/javascript" src="js/zlys.js"></script>
 		<script type="text/javascript" src="js/layer.js"></script>
 		<link rel="stylesheet" href="css/layer.css" />
+		<link rel="stylesheet" href="zlys/css/index.css" />
 		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 		<script type="text/javascript" src="js/common.js"></script>
 		<script src="js/mui.min.js"></script>
+		<style>
+			.gd-item .gdnum{
+				width: 100%;
+				height: 35px;
+			}
+		</style>
 	</head>
 	<body class="android">
 		<div class="scroll-content">
@@ -21,100 +28,54 @@
 						<button class="bar-button current-city" onclick="index()"><i class="icon icon-newback" style="right: 40%;"></i></button>
 					</div>
 				</div>
+
 				<div class="my-info" style="margin-top: -160px;">
-					<div class="my-info-background" style="background-color:#3490dc; -webkit-filter:blur(0px)"></div>
+					<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
 					<span class="my-vip" style="background:none;font-weight: bolder;">收运登记</span>
 				</div>
-
 				<div class="m-panel">
-					<div class="item-inquiry b-line"><button class="item-inquiry-btn " onclick="scan()">扫一扫</button></div>
-
+					<div class="item-inquiry b-line">
+						<button class="item-inquiry-btn " onclick="scan()" style="background-color: #cdeff8;">扫一扫</button></div>
 					<div>
-						<div class="list">
+						<a href="" class="gd-item">
+							<div class="gdnum bj1">
+								<dl id="organization">商户名称:***</dl><em id="phone">电话：***********</em><em id="nameB">负责人: ***</em>
+							</div>
+							<div class="text"><span>收运公司：</span><em id="department">**********</em></div>
+							<div class="text"><span>收运司机：</span><em id="driver">**********</em></div>
+							<div class="text"><span>收运时间：</span><em id="now">**********</em></div>
+							<div class="text"><span>收运地址：</span><em id="locNow">**********</em></div>
+						</a>
+						<!-- <div class="list">
 							<div class="item">
 								<div class="item-content">
 									<label class="name">商户名称:</label>
-									<input class="input" type="text" disabled="disabled" id="name">
+									<input class="input" type="text" id="name" value="123">
 								</div>
 							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">车辆终端号:</label>
-									<input class="input" type="text" disabled="disabled" id="deviceSerial">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">颜色:</label>
-									<input class="input" type="text" disabled="disabled" id="colour">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">厂家:</label>
-									<input class="input" type="text" disabled="disabled" id="manufacturer">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">型号:</label>
-									<input class="input" type="text" disabled="disabled" id="type">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">载重量(t):</label>
-									<input class="input" type="text" disabled="disabled" id="loadCapacity">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">车自重:</label>
-									<input class="input" type="text" disabled="disabled" id="weight">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">购买时间:</label>
-									<input class="input" type="text" disabled="disabled" id="purchasingDate">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">初始公里:</label>
-									<input class="input" type="text" disabled="disabled" id="initialMileage">
-								</div>
-							</div>
-							<div class="item">
-								<div class="item-content">
-									<label class="name">备注信息:</label>
-									<input class="input" type="text" disabled="disabled" id="remark">
-								</div>
-							</div>
-						</div>
+						</div> -->
 					</div>
-
-
 				</div>
 			</div>
 			<div class="tab-bar tab-bottom">
-				<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
 					 class="tab-button-txt">首页</span></a>
-				<a class="tab-button " href="forum.html"><i class="tab-button-icon icon icon-exhibition" style="background-size:30px"></i><span
-					 class="tab-button-txt">论坛</span></a>
-				<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">找车</span></a>
-				<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-my"></i><span
-					 class="tab-button-txt">我的</span></a>
+				<a class="tab-button" href="forum.html"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
+					 class="tab-button-txt">通知</span></a>
+				<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+				<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+					 class="tab-button-txt">设置</span></a>
 			</div>
+			<div id="allmap" style="hidden">
 	</body>
 	<script type="text/javascript" src="js/zlys.js"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
-	
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
 	<script>
-		function scan(){
+		function scan() {
 			createWithoutTitle('scan.html', {
-				titleNView:{
+				titleNView: {
 					type: 'float',
 					backgroundColor: 'rgba(71,105,169,0.3)',
 					titleText: '扫一扫',
@@ -129,9 +90,48 @@
 				}
 			});
 		}
-		
-		function scaned(t, r, f){
-			$("#name").val(r);
+
+		function scaned(t, r, f) {
+			$.post(initUrl + "/app/driver/find", {
+				phone: r
+			}, function(obj) {
+				if (obj.state == 0) {
+					muiHref("login.html")
+				} else {
+					var myNow = formatCSTDate(new Date(),"yyyy-M-d hh:mm:ss")
+					$("#organization").html("商户名称:&nbsp" + obj.other.organization);
+					$("#phone").html("电话:&nbsp" + obj.other.phone);
+					$("#nameB").html("负责人:&nbsp" + obj.other.name);
+					$("#department").html(obj.other.department);
+					$("#driver").html(obj.msg);
+					$("#now").html(myNow);
+
+					// 百度地图API功能
+					var map = new BMap.Map("allmap");
+					var geolocation = new BMap.Geolocation();
+					geolocation.getCurrentPosition(function(r) {
+						if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+							var mk = new BMap.Marker(r.point);
+							map.addOverlay(mk);
+							map.panTo(r.point);
+							// alert('您的位置：' + r.point.lng + ',' + r.point.lat);
+							var myGeo = new BMap.Geocoder();
+							var point = new BMap.Point(r.point.lng, r.point.lat);
+							myGeo.getLocation(point, function(rs) {
+								var addComp = rs.addressComponents;
+								var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
+								// alert("百度地址：" + address);
+								$("#locNow").html(address);
+							});
+						} else {
+							alert('failed' + this.getStatus());
+						}
+					}, {
+						enableHighAccuracy: true
+					})
+				}
+			})
 		}
+
 	</script>
 </html>
