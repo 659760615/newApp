@@ -215,26 +215,36 @@
 			layer.open({
 				type: 2,
 				content: '收运录入中...',
-				time: 3,
+				time: 2,
 				end: function() {
 					$.post(initUrl + "/app/driver/add", {
-						phone: $("#phone").html,
-						driver:$("#driver").html,
-						kg:$("#kg").html,
+						phone: $("#phone").html(),
+						driver: $("#driver").html(),
+						kg: $("#kgNow").html(),
+						loc: $("#locNow").html()
 					}, function(obj) {
-						layer.open({
-							content: obj.msg,
-							skin: 'msg',
-							time: 2,
-							end: function() {
-								
-								
-							}
-						});
+						if (obj.state == 1) {
+							layer.open({
+								content: obj.msg,
+								skin: 'msg',
+								time: 1,
+								end: function() {
+									window.location.href = "index.html";
+								}
+							});
+						} else {
+							layer.open({
+								content: "录入失败",
+								skin: 'msg',
+								time: 1,
+								end: function() {
+									window.location.href = "index.html";
+								}
+							});
+						}
 					})
 				}
 			})
 		}
-		
 	</script>
 </html>

@@ -1,8 +1,8 @@
 // var initUrl = "http://39.98.91.180:80";
 
-var initUrl = "http://192.168.1.104:80";
+// var initUrl = "http://192.168.1.104:80";
 
-// var initUrl = "http://192.168.3.4:80";
+var initUrl = "http://192.168.3.4:80";
 
 function zlyslay(obj) {
 	layer.open({
