@@ -217,21 +217,21 @@
 				content: '收运录入中...',
 				time: 3,
 				end: function() {
-					/* ajax */
-					layer.open({
-						content: '录入完成',
-						skin: 'msg',
-						time: 2,
-						end: function() {
-							layer.open({
-								type: 1,
-								content: aa,
-								anim: 'up',
-								style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:10px 0; border:none;'
-							});
-							// window.location.href = "index.html";
-						}
-					});
+					$.post(initUrl + "/app/driver/add", {
+						phone: $("#phone").html,
+						driver:$("#driver").html,
+						kg:$("#kg").html,
+					}, function(obj) {
+						layer.open({
+							content: obj.msg,
+							skin: 'msg',
+							time: 2,
+							end: function() {
+								
+								
+							}
+						});
+					})
 				}
 			})
 		}
