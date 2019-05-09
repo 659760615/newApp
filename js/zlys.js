@@ -1,6 +1,6 @@
-// var initUrl = "http://39.98.91.180:80";
+var initUrl = "http://39.98.91.180:80";
 
-var initUrl = "http://192.168.1.21:80";
+// var initUrl = "http://192.168.1.21:80";
 
 // var initUrl = "http://192.168.3.4:80";
 
@@ -58,10 +58,13 @@ function bz() {
 function clear_pwd() {
 	muiHref("clear.html");
 }
-
-
-
-
+function sb() {
+	layer.open({
+    content: '此功能正在升级中'
+    ,skin: 'msg'
+    ,time: 1
+  });
+}
 
 //格式化CST日期的字串
 function formatCSTDate(strDate, format) {

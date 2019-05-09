@@ -6,8 +6,6 @@
 		<title></title>
 		<link rel="stylesheet" href="index/css/ui.css">
 		<!-- zlys -->
-		<script type="text/javascript" src="js/zlys.js"></script>
-		<script type="text/javascript" src="js/layer.js"></script>
 		<link rel="stylesheet" href="css/layer.css" />
 		<link rel="stylesheet" href="zlys/css/index.css" />
 		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
@@ -34,61 +32,97 @@
 					<span class="my-vip" style="background:none;font-weight: bolder;">收运登记</span>
 				</div>
 				<div class="m-panel">
-					<div class="item-inquiry b-line">
-						<button class="item-inquiry-btn " onclick="scan()" style="background-color: #cdeff8;">扫一扫</button></div>
-					<div>
-						<a href="" class="gd-item">
+					<!-- <a href="" class="gd-item">
 							<div class="gdnum bj1">
-								<dl id="organization">商户名称:***</dl><em id="phone">电话：***********</em><em id="nameB">负责人: ***</em>
+								<dl id="organization">商户名称:</dl><em id="phone">电话:</em><em id="nameB">负责人:</em>
 							</div>
-							<div class="text"><span>收运公司：</span><em id="department">**********</em></div>
-							<div class="text"><span>收运司机：</span><em id="driver">**********</em></div>
-							<div class="text"><span>收运时间：</span><em id="now">**********</em></div>
-							<div class="text"><span>收运地址：</span><em id="locNow">**********</em></div>
-						</a>
-						<!-- <div class="list">
-							<div class="item">
-								<div class="item-content">
-									<label class="name">商户名称:</label>
-									<input class="input" type="text" id="name" value="123">
-								</div>
-							</div>
-						</div> -->
+							<div class="text"><span>收运公司:</span><em id="department"></em></div>
+							<div class="text"><span>收运司机:</span><em id="driver"></em></div>
+							<div class="text"><span>收运时间:</span><em id="now"></em></div>
+							<div class="text"><span>收运地址:</span><em id="locNow"></em></div>
+						</a> -->
+				</div>
+				<div class="devider b-line"></div>
+				<div class="item-exhibition">
+					<div class="item-exhibition-title">
+						<h2 id="organization">商户名称:</h2>
+						<p>负责人:<em id="nameB"></em></p>
+						<p>联系电话:<em id="phone"></em></p>
+						<p>所属收运公司:<em id="department"></em></p>
+						<p>收运人员:<em id="driver"></em></p>
+						<p>时间:<em id="now"></em></p>
+						<p>地址:<em id="locNow"></em></p>
+						<p>餐厨垃圾重量(kg):<em id="kgNow"></em></p>
+					</div>
+					<div class="item-exhibition-h" onclick="addtrue()" id="wenzi">确认</div>
+				</div>
+				<div class="devider b-line"></div>
+				<div class="grids-contant">
+					<a class="grids-grid" href="javascript:;" onclick="scan()">
+						<div class="grids-grid-icon"><img src="images/sys.png" alt=""></div>
+						<p class="grids-grid-label">扫一扫</p>
+					</a>
+					<a class="grids-grid" href="javascript:;" onclick="addkg()">
+						<div class="grids-grid-icon"><img src="images/lr.png" alt=""></div>
+						<p class="grids-grid-label">录入称重</p>
+					</a>
+					<a class="grids-grid" href="javascript:;" onclick="sb()">
+						<div class="grids-grid-icon"><img src="images/cz.png" alt=""></div>
+						<p class="grids-grid-label">电子称重</p>
+					</a>
+				</div>
+				<div class="devider b-line"></div>
+				<div class="list" id="addkg" style="display:none;">
+					<div class="item">
+						<div class="item-content">
+							<label class="name">重量:</label>
+							<input class="input" type="text" id="kg" placeholder="请输入餐厨垃圾重量">
+						</div>
 					</div>
 				</div>
+				<!-- <div class="form-button t-line" id="trueShow" > -->
+				<div class="form-button t-line" id="trueShow" style="display:none;">
+					<button class="form-submit" style="background-color:#5f85cf" onclick="shouyun()">提 交</button>
+				</div>
+				<div class="devider b-line" id="addkg1" style="display:none;"></div>
 			</div>
-			<div class="tab-bar tab-bottom">
-				<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
-					 class="tab-button-txt">首页</span></a>
-				<a class="tab-button" href="forum.html"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
-					 class="tab-button-txt">通知</span></a>
-				<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
-				<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
-					 class="tab-button-txt">设置</span></a>
-			</div>
-			<div id="allmap" style="hidden">
+		</div>
+		<div class="tab-bar tab-bottom">
+			<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				 class="tab-button-txt">首页</span></a>
+			<a class="tab-button" href="forum.html"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
+				 class="tab-button-txt">通知</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
+		</div>
+		<div id="allmap" style="hidden">
 	</body>
 	<script type="text/javascript" src="js/zlys.js"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
 	<script>
+		var state = 0;
+
 		function scan() {
-			createWithoutTitle('scan.html', {
-				titleNView: {
-					type: 'float',
-					backgroundColor: 'rgba(71,105,169,0.3)',
-					titleText: '扫一扫',
-					titleColor: '#4769a9',
-					autoBackButton: true,
-					buttons: [{
-						fontSrc: '_www/helloh5.ttf',
-						text: '\ue302',
-						fontSize: '18px',
-						onclick: 'javascript:scanPicture()'
-					}]
-				}
-			});
+			if (state == 0) {
+				createWithoutTitle('scan.html', {
+					titleNView: {
+						type: 'float',
+						backgroundColor: 'rgba(71,105,169,0.3)',
+						titleText: '扫一扫',
+						titleColor: '#4769a9',
+						autoBackButton: true,
+						buttons: [{
+							fontSrc: '_www/helloh5.ttf',
+							text: '\ue302',
+							fontSize: '18px',
+							onclick: 'javascript:scanPicture()'
+						}]
+					}
+				});
+			}
 		}
 
 		function scaned(t, r, f) {
@@ -98,13 +132,13 @@
 				if (obj.state == 0) {
 					muiHref("login.html")
 				} else {
-					var myNow = formatCSTDate(new Date(),"yyyy-M-d hh:mm:ss")
+					var myNow = formatCSTDate(new Date(), "yyyy-M-d hh:mm:ss")
 					$("#organization").html("商户名称:&nbsp" + obj.other.organization);
-					$("#phone").html("电话:&nbsp" + obj.other.phone);
-					$("#nameB").html("负责人:&nbsp" + obj.other.name);
-					$("#department").html(obj.other.department);
-					$("#driver").html(obj.msg);
-					$("#now").html(myNow);
+					$("#phone").html("&nbsp" + obj.other.phone);
+					$("#nameB").html("&nbsp" + obj.other.name);
+					$("#department").html("&nbsp" + obj.other.department);
+					$("#driver").html("&nbsp" + obj.msg);
+					$("#now").html("&nbsp" + myNow);
 
 					// 百度地图API功能
 					var map = new BMap.Map("allmap");
@@ -121,10 +155,9 @@
 								var addComp = rs.addressComponents;
 								var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
 								// alert("百度地址：" + address);
-								$("#locNow").html(address);
+								$("#locNow").html("&nbsp" + address);
+								state = 1;
 							});
-						} else {
-							alert('failed' + this.getStatus());
 						}
 					}, {
 						enableHighAccuracy: true
@@ -133,5 +166,75 @@
 			})
 		}
 
+		function addkg() {
+			if (state == 0) {
+				layer.open({
+					content: '请先完成商户扫描',
+					skin: 'msg',
+					time: 1
+				});
+			}
+			if (state == 1) {
+				$("#addkg").show();
+				$("#addkg1").show();
+			}
+		}
+
+		$(function() {
+			$('#kg').bind('input propertychange', function() {
+				var now = $('#kg').val();
+				$("#kgNow").html("&nbsp" + now);
+			});
+		})
+
+		function addtrue() {
+			if (state == 0) {
+				layer.open({
+					content: '请先完成商户扫描',
+					skin: 'msg',
+					time: 1
+				});
+				return;
+			}
+			if ($("#kgNow").html() == '') {
+				layer.open({
+					content: '请先录入称重',
+					skin: 'msg',
+					time: 1
+				});
+				return;
+			}
+			$("#addkg").hide();
+			$("#addkg1").hide();
+			$("#trueShow").show();
+			$("#wenzi").html("已确认");
+			state = 3;
+		}
+
+		function shouyun() {
+			layer.open({
+				type: 2,
+				content: '收运录入中...',
+				time: 3,
+				end: function() {
+					/* ajax */
+					layer.open({
+						content: '录入完成',
+						skin: 'msg',
+						time: 2,
+						end: function() {
+							layer.open({
+								type: 1,
+								content: aa,
+								anim: 'up',
+								style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:10px 0; border:none;'
+							});
+							// window.location.href = "index.html";
+						}
+					});
+				}
+			})
+		}
+		
 	</script>
 </html>
