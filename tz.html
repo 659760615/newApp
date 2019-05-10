@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="index/css/ui.css">
+		<link rel="stylesheet" href="css/layer.css">
+		<style>
+			.nav-tabbar-tab .tab-button:before{
+				border-right:2px solid #ddd;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content">
+			<div class="view-container top-tab">
+				<!-- 内容 begin -->
+				<div class="Top-location">
+					<div class="nav-tabbar nav-tabbar-tab" style="border-color: #5f85cf;">
+						<a class="tab-button active" href="javascript:void(0);" onclick="tz()" style="background-color:#5f85cf;">部门消息</a>
+						<a class="tab-button " href="javascript:void(0);" onclick="tz_cgj()" style="color: #5f85cf;">城管局消息</a>
+					</div>
+				</div>
+				<!-- 内容 End -->
+				<div class="scroll-content dwz-scroll" style="overflow:auto">
+					<div class="scroll">
+						<!-- 内容 begin-->
+						<div class="detail-finan">
+							<div class="address-tel-module" id="msg">
+								<div class="devider b-line"></div>
+								<div class="devider b-line"></div>
+								<div class="devider b-line"></div>
+								<div class="devider b-line"></div>
+								<!--  -->
+								<div v-for="(object,index) in objects">
+
+									<div class="address-module">
+										<div class="address-left">
+											<h2>{{object.title}}</h2>
+											<p><i>{{object.msgTime}}</i></p>
+											<p><i>{{object.msg}}</i><em></em></p>
+										</div>
+									</div>
+
+								</div>
+							</div>
+						</div>
+						<!-- 内容 End-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-bar tab-bottom" style="background-color: #f2f2f2;">
+			<a class="tab-button " href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				 class="tab-button-txt">首页</span></a>
+			<a class="tab-button active" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz2"
+				 style="background-size:25px"></i><span class="tab-button-txt">通知</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script type="text/javascript" src="js/vue.js"> </script>
+	<script type="text/javascript" src="js/mui.min.js"></script>
+	<script>
+		var msg = new Vue({
+			el: '#msg',
+			data: {
+				objects: [],
+			},
+			created: function() {
+				var self = this;
+				$.post(initUrl + "/app/driver/msg", {}, function(obj) {
+					if (obj.state == 1) {
+						self.objects = obj.other;
+					} else {
+						loginOut();
+					}
+				})
+			},
+			methods:{
+				reload:function(){
+					var self = this;
+					$.post(initUrl + "/app/driver/msg", {}, function(obj) {
+						if (obj.state == 1) {
+							self.objects = obj.other;
+						} else {
+							loginOut();
+						}
+					})
+				}
+			}
+		});
+
+		mui.init({
+			pullRefresh: {
+				container: "#msg", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
+				down: {
+					style: 'circle', //必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
+					color: '#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
+					height: '50px', //可选,默认50px.下拉刷新控件的高度,
+					range: '100px', //可选 默认100px,控件可下拉拖拽的范围
+					offset: '0px', //可选 默认0px,下拉刷新控件的起始位置
+					auto: true, //可选,默认false.首次加载自动上拉刷新一次
+					contentdown : "123",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
+					callback: function() {
+						msg.reload();
+						mui('#msg').pullRefresh().endPulldown();
+					}
+				}
+			}
+		});
+	</script>
+</html>
