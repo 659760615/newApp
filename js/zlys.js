@@ -64,6 +64,9 @@ function tz() {
 function tz_cgj() {
 	muiHref("tz_cgj.html");
 }
+function lsxx() {
+	muiHref("lsxx.html");
+}
 function sb() {
 	layer.open({
     content: '此功能正在升级中'
