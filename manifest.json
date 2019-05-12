@@ -10,7 +10,7 @@
     "icons" : {
         "72" : "icon.png"
     },
-    "fullscreen" : true,
+    "fullscreen" : false,
     "launch_path" : "login.html", /*必选，应用的入口页面，默认为根目录下的index.html；也可以是网络地址，网络地址必须以http://或https://开头*/
     "developer" : {
         "email" : "", /*可选，开发者名称*/
@@ -116,7 +116,15 @@
                         "spotlight-retina" : "", /*可选，58x58，iPhone高分屏Spotlight搜索程序图标*/
                         "spotlight-retina7" : "", /*可选，80x80，iPhone iOS7高分屏Spotlight搜索程序图标*/
                         "settings-normal" : "", /*可选，29x29，iPhone设置页面程序图标*/
-                        "settings-retina" : ""
+                        "settings-retina" : "",
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
                     },
                     "ipad" : {
                         "normal" : "", /*可选，72x72，iPad普通屏幕程序图标*/
@@ -128,15 +136,26 @@
                         "spotlight-normal7" : "", /*可选，40x40，iPad iOS7 Spotlight搜索程序图标*/
                         "spotlight-retina7" : "", /*可选，80x80，iPad iOS7高分屏Spotlight搜索程序图标*/
                         "settings-normal" : "", /*可选，29x29，iPad设置页面程序图标*/
-                        "settings-retina" : ""
-                    }
+                        "settings-retina" : "",
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "appstore" : "C:/Users/Administrator/Desktop/ccc.png"
                 },
                 "android" : {
-                    "mdpi" : "C:/Users/CZX/Desktop/cc.png", /*必选，48x48，普通屏程序图标*/
-                    "ldpi" : "", /*必选，48x48，大屏程序图标*/
-                    "hdpi" : "", /*必选，72x72，高分屏程序图标*/
-                    "xhdpi" : "", /*必选，96x96，720P高分屏程序图标*/
-                    "xxhdpi" : ""
+                    "mdpi" : "unpackage/res/icons/48x48.png", /*必选，48x48，普通屏程序图标*/
+                    "ldpi" : "unpackage/res/icons/48x48.png", /*必选，48x48，大屏程序图标*/
+                    "hdpi" : "unpackage/res/icons/72x72.png", /*必选，72x72，高分屏程序图标*/
+                    "xhdpi" : "unpackage/res/icons/96x96.png", /*必选，96x96，720P高分屏程序图标*/
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
                 }
             },
             "splashscreen" : {

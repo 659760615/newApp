@@ -10,6 +10,7 @@
 		<script type="text/javascript" src="js/layer.js"></script>
 		<link rel="stylesheet" href="css/layer.css" />
 		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+		<link rel="stylesheet" href="css/xl.css">
 	</head>
 	<body class="android">
 		<div class="scroll-content" id="person">
@@ -24,60 +25,64 @@
 					<span class="my-vip" style="background:none;font-weight: bolder;">司机信息</span>
 				</div>
 				<div>
-					<div class="list">
-						<div class="item">
-							<div class="item-content">
-								<label class="name">司机姓名:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.name">
+					<main class="parent">
+						<p class="refreshText" style="text-align: center;"></p>
+						<div>&nbsp;</div>
+						<div class="list">
+							<div class="item">
+								<div class="item-content">
+									<label class="name">司机姓名:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.name">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">性别:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.sex">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">类型:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.type">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">电话:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.phone">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">身份证号:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.id">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">部门:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.department">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">排班车牌号:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.deviceSerial">
+								</div>
+							</div>
+							<div class="item">
+								<div class="item-content">
+									<label class="name">排班时间:</label>
+									<input class="input" type="text" disabled="disabled" v-model="object.other.startTime + '-'+object.other.endTime">
+								</div>
 							</div>
 						</div>
-						<div class="item">
-							<div class="item-content">
-								<label class="name">性别:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.sex">
-							</div>
-						</div>
-						<div class="item">
-							<div class="item-content">
-								<label class="name">类型:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.type">
-							</div>
-						</div>
-						<div class="item">
-							<div class="item-content">
-								<label class="name">电话:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.phone">
-							</div>
-						</div>
-						<div class="item">
-							<div class="item-content">
-								<label class="name">身份证号:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.id">
-							</div>
-						</div>
-						<div class="item">
-							<div class="item-content">
-								<label class="name">部门:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.department">
-							</div>
-						</div>
-						<div class="item">
-							<div class="item-content">
-								<label class="name">排班车牌号:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.deviceSerial">
-							</div>
-						</div>
-						<div class="item">
-							<div class="item-content">
-								<label class="name">排班时间:</label>
-								<input class="input" type="text" disabled="disabled" v-model="object.other.startTime + '-'+object.other.endTime">
-							</div>
-						</div>
-					</div>
+					</main>
 				</div>
 			</div>
 		</div>
-		<div class="tab-bar tab-bottom" >
+		<div class="tab-bar tab-bottom">
 			<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
@@ -107,5 +112,41 @@
 				})
 			},
 		});
+
+		window.onload = function() {
+			let container = document.querySelector('#refreshContainer');
+			let refreshText = document.querySelector('.refreshText');
+			let parent = document.querySelector('.parent');
+			let startY = 0; //手指触摸最开始的Y坐标
+			let endY = 0; //手指结束触摸时的Y坐标
+			parent.addEventListener('touchstart', function(e) {
+				startY = e.touches[0].pageY;
+			});
+			parent.addEventListener('touchmove', function(e) {
+				if (isTop() && (e.touches[0].pageY - startY) > 0) {
+					reloadXL();
+				}
+			});
+
+			function isTop() {
+				var t = document.documentElement.scrollTop || document.body.scrollTop;
+				return t === 0 ? true : false;
+			}
+
+			function reloadXL() {
+				console.log('下拉了');
+				// refreshText.style.height = "50px";
+				parent.style.transform = "translateY(50px)";
+				parent.style.transition = "all ease 0.5s";
+				refreshText.innerHTML = "释放立即刷新...";
+				refreshText.innerHTML = "正在刷新...";
+				setTimeout(function() {
+					parent.style.transform = "translateY(0)";
+					console.log('成功刷新');
+					refreshText.innerHTML = "";
+				}, 1000)
+			}
+			reloadXL();
+		}
 	</script>
 </html>

@@ -6,6 +6,7 @@
 		<title></title>
 		<link rel="stylesheet" href="index/css/ui.css">
 		<link rel="stylesheet" href="css/layer.css">
+		<link rel="stylesheet" href="css/xl.css">
 		<style>
 			.nav-tabbar-tab .tab-button:before{
 				border-right:2px solid #ddd;
@@ -13,6 +14,7 @@
 		</style>
 	</head>
 	<body>
+		<div class="detail-finan">
 		<div class="content">
 			<div class="view-container top-tab">
 				<!-- 内容 begin -->
@@ -25,26 +27,28 @@
 				</div>
 				<!-- 内容 End -->
 				<div class="scroll-content dwz-scroll" style="overflow:auto">
+													<!--  -->
+				
 					<div class="scroll">
 						<!-- 内容 begin-->
-						<div class="detail-finan">
 							<div class="address-tel-module" id="msg">
-								<div class="devider b-line"></div>
-								<div class="devider b-line"></div>
-								<div class="devider b-line"></div>
-								<div class="devider b-line"></div>
+								<div>&nbsp;</div>
+								<div>&nbsp;</div>
+								<div>&nbsp;</div>
 								<!--  -->
+								<main class="parent">
+									<p class="refreshText" style="text-align: center;"></p>
+									<!--  -->
 								<div v-for="(object,index) in objects">
-
 									<div class="address-module">
 										<div class="address-left">
-											<h2>{{object.title}}</h2>
+											<h2>{{object.title | spittitle}}</h2>
 											<p><i>{{object.msgTime}}</i></p>
-											<p><i>{{object.msg}}</i><em></em></p>
+											<p><i>{{object.msg | spitmsg}}</i><em></em></p>
 										</div>
 									</div>
-
 								</div>
+								</main>
 							</div>
 						</div>
 						<!-- 内容 End-->
@@ -66,13 +70,20 @@
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 	<script type="text/javascript" src="js/vue.js"> </script>
-	<script type="text/javascript" src="js/mui.min.js"></script>
 	<script>
 		var msg = new Vue({
 			el: '#msg',
 			data: {
 				objects: [],
 			},
+			filters: {
+                        spitmsg:function (obj) {
+                            return obj.substring(0, 75);
+                        },
+                        spittitle:function (obj) {
+                            return obj.substring(0, 10);
+                        }
+                    },
 			created: function() {
 				var self = this;
 				$.post(initUrl + "/app/driver/msg", {}, function(obj) {
@@ -96,24 +107,45 @@
 				}
 			}
 		});
-
-		mui.init({
-			pullRefresh: {
-				container: "#msg", //下拉刷新容器标识，querySelector能定位的css选择器均可，比如：id、.class等
-				down: {
-					style: 'circle', //必选，下拉刷新样式，目前支持原生5+ ‘circle’ 样式
-					color: '#2BD009', //可选，默认“#2BD009” 下拉刷新控件颜色
-					height: '50px', //可选,默认50px.下拉刷新控件的高度,
-					range: '100px', //可选 默认100px,控件可下拉拖拽的范围
-					offset: '0px', //可选 默认0px,下拉刷新控件的起始位置
-					auto: true, //可选,默认false.首次加载自动上拉刷新一次
-					contentdown : "123",//可选，在下拉可刷新状态时，下拉刷新控件上显示的标题内容
-					callback: function() {
-						msg.reload();
-						mui('#msg').pullRefresh().endPulldown();
-					}
+		
+		<!-- xl -->
+		window.onload = function() {
+			let container = document.querySelector('#refreshContainer');
+			let refreshText = document.querySelector('.refreshText');
+			let parent = document.querySelector('.parent');
+			let startY = 0; //手指触摸最开始的Y坐标
+			let endY = 0; //手指结束触摸时的Y坐标
+			parent.addEventListener('touchstart', function(e) {
+				startY = e.touches[0].pageY;
+			});
+			parent.addEventListener('touchmove', function(e) {
+				if (isTop() && (e.touches[0].pageY - startY) > 0) {
+					reloadXL();
 				}
+			});
+			function isTop() {
+				var t = document.documentElement.scrollTop || document.body.scrollTop;
+				return t === 0 ? true : false;
 			}
-		});
+			function reloadXL(){
+				console.log('下拉了');
+				refreshText.style.height = "50px";
+				parent.style.transform = "translateY(50px)";
+				parent.style.transition = "all ease 0.5s";
+				refreshText.innerHTML = "释放立即刷新...";
+				refreshText.innerHTML = "正在刷新...";
+				setTimeout(function() {
+					parent.style.transform = "translateY(0)";
+					console.log('成功刷新');
+					refreshText.innerHTML = "";
+					// var dom = $(".parent");//可滚动区域
+					//  var scrollTop = dom.scrollTop();//获取滚动的距离
+					//  console.log(scrollTop);
+					// msg.reload();
+				}, 1000)
+			}
+			reloadXL();
+		}
+		
 	</script>
 </html>
