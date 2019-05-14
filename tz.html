@@ -13,41 +13,39 @@
 			}
 		</style>
 	</head>
-	<body>
+	<body >
 		<div class="detail-finan">
-		<div class="content">
-			<div class="view-container top-tab">
-				<!-- 内容 begin -->
-				<div class="Top-location">
-					<div class="nav-tabbar nav-tabbar-tab" style="border-color: #5f85cf;">
-						<a class="tab-button active" href="javascript:void(0);" onclick="tz()" style="background-color:#5f85cf;">部门消息</a>
-						<a class="tab-button " href="javascript:void(0);" onclick="tz_cgj()" style="color: #5f85cf;">城管局消息</a>
-						<a class="tab-button " href="javascript:void(0);" onclick="lsxx()" style="color: #5f85cf;">历史消息</a>
+			<div class="content">
+				<div class="view-container top-tab">
+					<!-- 内容 begin -->
+					<div class="Top-location">
+						<div class="nav-tabbar nav-tabbar-tab" style="border-color: #5f85cf;">
+							<a class="tab-button active" href="javascript:void(0);" onclick="tz()" style="background-color:#5f85cf;">部门消息</a>
+							<a class="tab-button " href="javascript:void(0);" onclick="tz_cgj()" style="color: #5f85cf;">城管局消息</a>
+							<!-- <a class="tab-button " href="javascript:void(0);" onclick="lsxx()" style="color: #5f85cf;">历史消息</a> -->
+						</div>
 					</div>
-				</div>
-				<!-- 内容 End -->
-				<div class="scroll-content dwz-scroll" style="overflow:auto">
-													<!--  -->
-				
-					<div class="scroll">
-						<!-- 内容 begin-->
-							<div class="address-tel-module" id="msg">
-								<div>&nbsp;</div>
+					<!-- 内容 End -->
+					<div class="scroll-content dwz-scroll" style="overflow:auto">
+						<!--  -->
+						<div class="scroll">
+							<!-- 内容 begin-->
+							<div class="address-tel-module" id="msg" >
 								<div>&nbsp;</div>
 								<div>&nbsp;</div>
 								<!--  -->
-								<main class="parent">
-									<p class="refreshText" style="text-align: center;"></p>
+								<main class="parent" >
+									<p class="refreshText" style="text-align: center;padding-top: 30px;"></p>
 									<!--  -->
-								<div v-for="(object,index) in objects">
-									<div class="address-module">
-										<div class="address-left">
-											<h2>{{object.title | spittitle}}</h2>
-											<p><i>{{object.msgTime}}</i></p>
-											<p><i>{{object.msg | spitmsg}}</i><em></em></p>
+									<div v-for="(object,index) in objects" >
+										<div class="address-module">
+											<div class="address-left">
+												<p style="text-align: center">{{object.title | spittitle}}</p>
+												<p><i>{{object.msgTime}}</i></p>
+												<p><i>{{object.msg | spitmsg}}</i><em></em></p>
+											</div>
 										</div>
 									</div>
-								</div>
 								</main>
 							</div>
 						</div>
@@ -77,13 +75,13 @@
 				objects: [],
 			},
 			filters: {
-                        spitmsg:function (obj) {
-                            return obj.substring(0, 75);
-                        },
-                        spittitle:function (obj) {
-                            return obj.substring(0, 10);
-                        }
-                    },
+				spitmsg: function(obj) {
+					return obj.substring(0, 75);
+				},
+				spittitle: function(obj) {
+					return obj.substring(0, 10);
+				}
+			},
 			created: function() {
 				var self = this;
 				$.post(initUrl + "/app/driver/msg", {}, function(obj) {
@@ -94,8 +92,8 @@
 					}
 				})
 			},
-			methods:{
-				reload:function(){
+			methods: {
+				reload: function() {
 					var self = this;
 					$.post(initUrl + "/app/driver/msg", {}, function(obj) {
 						if (obj.state == 1) {
@@ -107,45 +105,44 @@
 				}
 			}
 		});
-		
-		<!-- xl -->
-		window.onload = function() {
-			let container = document.querySelector('#refreshContainer');
-			let refreshText = document.querySelector('.refreshText');
-			let parent = document.querySelector('.parent');
-			let startY = 0; //手指触摸最开始的Y坐标
-			let endY = 0; //手指结束触摸时的Y坐标
-			parent.addEventListener('touchstart', function(e) {
-				startY = e.touches[0].pageY;
-			});
-			parent.addEventListener('touchmove', function(e) {
-				if (isTop() && (e.touches[0].pageY - startY) > 0) {
-					reloadXL();
-				}
-			});
-			function isTop() {
-				var t = document.documentElement.scrollTop || document.body.scrollTop;
-				return t === 0 ? true : false;
-			}
-			function reloadXL(){
-				console.log('下拉了');
-				refreshText.style.height = "50px";
-				parent.style.transform = "translateY(50px)";
-				parent.style.transition = "all ease 0.5s";
-				refreshText.innerHTML = "释放立即刷新...";
-				refreshText.innerHTML = "正在刷新...";
-				setTimeout(function() {
-					parent.style.transform = "translateY(0)";
-					console.log('成功刷新');
-					refreshText.innerHTML = "";
-					// var dom = $(".parent");//可滚动区域
-					//  var scrollTop = dom.scrollTop();//获取滚动的距离
-					//  console.log(scrollTop);
-					// msg.reload();
-				}, 1000)
-			}
-			reloadXL();
-		}
-		
+
+// 		window.onload = function() {
+// 			let container = document.querySelector('#refreshContainer');
+// 			let refreshText = document.querySelector('.refreshText');
+// 			let parent = document.querySelector('.parent');
+// 			let startY = 0; //手指触摸最开始的Y坐标
+// 			let endY = 0; //手指结束触摸时的Y坐标
+// 			parent.addEventListener('touchstart', function(e) {
+// 				startY = e.touches[0].pageY;
+// 			});
+// 			parent.addEventListener('touchmove', function(e) {
+// 				if (isTop() && (e.touches[0].pageY - startY) > 0) {
+// 					reloadXL();
+// 				}
+// 			});
+// 
+// 			function isTop() {
+// 				var t = document.documentElement.scrollTop || document.body.scrollTop;
+// 				return t === 0 ? true : false;
+// 			}
+// 
+// 			$(window).on('scroll', function() {
+// 				console.log($(window).scrollTop());
+// 			})
+// 
+// 			function reloadXL() {
+// 				refreshText.style.height = "50px";
+// 				parent.style.transform = "translateY(50px)";
+// 				parent.style.transition = "all ease 0.5s";
+// 				refreshText.innerHTML = "释放立即刷新...";
+// 				refreshText.innerHTML = "正在刷新...";
+// 				setTimeout(function() {
+// 					parent.style.transform = "translateY(0)";
+// 					refreshText.innerHTML = "";
+// 					// msg.reload();
+// 				}, 800)
+// 			}
+// 			reloadXL();
+// 		}
 	</script>
 </html>

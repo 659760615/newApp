@@ -10,7 +10,6 @@
 		<script type="text/javascript" src="js/layer.js"></script>
 		<link rel="stylesheet" href="css/layer.css" />
 		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
-		<link rel="stylesheet" href="css/xl.css">
 	</head>
 	<body class="android">
 		<div class="scroll-content" id="person">
@@ -25,9 +24,6 @@
 					<span class="my-vip" style="background:none;font-weight: bolder;">司机信息</span>
 				</div>
 				<div>
-					<main class="parent">
-						<p class="refreshText" style="text-align: center;"></p>
-						<div>&nbsp;</div>
 						<div class="list">
 							<div class="item">
 								<div class="item-content">
@@ -78,7 +74,6 @@
 								</div>
 							</div>
 						</div>
-					</main>
 				</div>
 			</div>
 		</div>
@@ -112,41 +107,5 @@
 				})
 			},
 		});
-
-		window.onload = function() {
-			let container = document.querySelector('#refreshContainer');
-			let refreshText = document.querySelector('.refreshText');
-			let parent = document.querySelector('.parent');
-			let startY = 0; //手指触摸最开始的Y坐标
-			let endY = 0; //手指结束触摸时的Y坐标
-			parent.addEventListener('touchstart', function(e) {
-				startY = e.touches[0].pageY;
-			});
-			parent.addEventListener('touchmove', function(e) {
-				if (isTop() && (e.touches[0].pageY - startY) > 0) {
-					reloadXL();
-				}
-			});
-
-			function isTop() {
-				var t = document.documentElement.scrollTop || document.body.scrollTop;
-				return t === 0 ? true : false;
-			}
-
-			function reloadXL() {
-				console.log('下拉了');
-				// refreshText.style.height = "50px";
-				parent.style.transform = "translateY(50px)";
-				parent.style.transition = "all ease 0.5s";
-				refreshText.innerHTML = "释放立即刷新...";
-				refreshText.innerHTML = "正在刷新...";
-				setTimeout(function() {
-					parent.style.transform = "translateY(0)";
-					console.log('成功刷新');
-					refreshText.innerHTML = "";
-				}, 1000)
-			}
-			reloadXL();
-		}
 	</script>
 </html>

@@ -1,111 +1,309 @@
+<!DOCTYPE html>
 <html>
-<head>
-<meta charset="utf-8">
-<title>手机端触屏手指滑动方向</title>
-<meta content="width=device-width,initial-scale=1.0,minimum-scale=1.0,user-scalable=no,maximum-scale=1.0" id="viewport" name="viewport">
-<script type="text/javascript">
-var currntY = 0;
-var lastY = 0;
-var touch_screen = {
-　　 //方向
-    direction: {
-	direction: "",
-	object: null,
- 
-	start: function() {
-            var self = this,
-                obj = self.object;
-            obj.addEventListener('touchstart', function(e) {
-                self.move();
-            }, false);
-            obj.addEventListener('touchend', function(e) {
-		//self.move();	
-		lastY = document.body.scrollTop;	
-            }, false);
-        },
-        //拖动滑动时
-        move: function() {
-            var self = this;	    
-	    self.object.addEventListener('touchmove', function(e) {
-		currntY = document.body.scrollTop;
-                var direct =  currntY - lastY;
-		
-                if (direct > 0) {
-                    self.direction = "down";
-		    document.getElementById("nav").style.visibility="hidden";//隐藏
-		} else if (direct < 0) {
-		    self.direction = "up";
-		    document.getElementById("nav").style.visibility="visible";//显示
-		} 
- 
-		if(currntY == 0){
-		    self.direction = "top";
-		} else if((currntY + window.screen.availHeight) == document.body.clientHeight){
-		    self.direction = "bottom";
-		    document.getElementById("nav").style.visibility="visible";//显示
-		}
-                
-                document.getElementById('nav').innerHTML= self.direction;
-                //document.getElementById('nav').innerHTML= currntY + "|" + window.screen.availHeight  + "|" + document.body.clientHeight;
-		lastY = document.body.scrollTop;
-            }, false);           
-        },
-       
-        //通过一个dom对象进行初始化
-        init: function(a) {
-            var class_clone = function(source) { 
-                var result={};
-                for (var key in source) {
-                    result[key] = typeof source[key]==="object" ? class_clone(source[key]) : source[key];
-                } 
-                return result; 
-            }
-            var self =  class_clone(touch_screen.direction);
-            self.object = document.getElementById(a);
-            if (!self.object) {
-                alert('bind_object is not an object');
-                return false;
-            }
-            self.start();
-        }
-    }
-}
- 
-//页面加载完成
-window.onload = function() {
-    touch_screen.direction.init("inner");
-}
-</script>
- 
-<style>  
-    * {margin: 0;  padding: 0;}   
-    #outer{ width:90%; height: 100%; background: #000; margin: auto;  overflow: hidden;}   
-    #inner{width:80%;  background: #e4e4e4; margin: auto; position:relative; top:0px; font-size: 1em; padding: 30px 10px;  }   
-    #inner p{line-height: 30px; letter-spacing: 3px; text-indent:2em;} 
-    #nav { width:100%; height: 50px; border: 1px solid #D4CD49; background: #947674;text-align: center; position:fixed;left:0;bottom:0; } 
-    #nav2 { width:100%; height: 50px; border: 1px solid #D4CD49;background: #947674;} 
-    h2{ width: 100%; text-align: center; }   
-    h3{ width: 100%; padding-left:60%;}   
-</style>  
-</head>
- 
-<body>
-<div id="spText2"></div>  
-    <div id="outer">  
-        <div id="inner">  
-            <h2>背影</h2>  
-            <h3>—朱自清</h3>  
-                       <p>我与父亲不相见已二年余了，我最不能忘记的是他的背影。  
-        那年冬天，祖母死了，父亲的差使也交卸了，正是祸不单行的日子。我从北京到徐州，打算跟着父亲奔丧回家。到徐州见着父亲,看见满院狼藉的东西，又想起祖母，不禁簌簌地流下眼泪。父亲说：“事已如此，不必难过，好在天无绝人之路！”   
-        回家变卖典质，父亲还了亏空；又借钱办了丧事。这些日子，家中光景很是惨淡，一半为了丧事，一半为了父亲赋闲。丧事完毕，父亲要到南京谋事，我也要回北京念书，我们便同行。  
-        到南京时，有朋友约去游逛，勾留了一日；第二日上午便须渡江到浦口，下午上车北去。父亲因为事忙，本已说定不送我，叫旅馆里一个熟识的茶房陪我同去。他再三嘱咐茶房，甚是仔细。但他终于不放心，怕茶房不妥帖；颇踌躇了一会。其实我那年已二十岁，北京已来往过两三次，是没有什么要紧的了。他踌躇了一会，终于决定还是自己送我去。我再三回劝他不必去；他只说：“不要紧，他们去不好！”  
-        我们过了江，进了车站。我买票，他忙着照看行李。行李太多了，得向脚夫行些小费才可过去。他便又忙着和他们讲价钱。我那时真是聪明过分，总觉他说话不大漂亮，非自己插嘴不可，但他终于讲定了价钱；就送我上车。他给我拣定了靠车门的一张椅子；我将他给我做的紫毛大衣铺好座位。他嘱咐我路上小心，夜里要警醒些，不要受凉。又嘱托茶房好好照应我。我心里暗笑他的迂；他们只认得钱，托他们只是白托！而且我这样大年纪的人，难道还不能料理自己么？   
-        我说道：“爸爸，你走吧。”他望车外看了看，说：“我买几个橘子去。你就在此地，不要走动。”我看那边月台的栅栏外有几个卖东西的等着顾客。走到那边月台，须穿过铁道，须跳下去又爬上去。父亲是一个胖子，走过去自然要费事些。我本来要去的，他不肯，只好让他去。我看见他戴着黑布小帽，穿着黑布大马褂，深青布棉袍，蹒跚地走到铁道边，慢慢探身下去，尚不大难。可是他穿过铁道，要爬上那边月台，就不容易了。他用两手攀着上面，两脚再向上缩；他肥胖的身子向左微倾，显出努力的样子。这时我看见他的背影，我的泪很快地流下来了。我赶紧拭干了泪。怕他看见，也怕别人看见。我再向外看时，他已抱了朱红的橘子往回走了。过铁道时，他先将橘子散放在地上，自己慢慢爬下，再抱起橘子走。到这边时，我赶紧去搀他。他和我走到车上，将橘子一股脑儿放在我的皮大衣上。于是扑扑衣上的泥土，心里很轻松似的。过一会儿说：“我走了，到那边来信！”我望着他走出去。他走了几步，回过头看见我，说：“进去吧，里边没人。”等他的背影混入来来往往的人里，再找不着了，我便进来坐下，我的眼泪又来了。  
-        近几年来，父亲和我都是东奔西走，家中光景是一日不如一日。他少年出外谋生，独力支持，做了许多大事。哪知老境却如此颓唐！他触目伤怀，自然情不能自已。情郁于中，自然要发之于外；家庭琐屑便往往触他之怒。他待我渐渐不同往日。但最近两年不见，他终于忘却我的不好，只是惦记着我，惦记着我的儿子。 
-        我北来后，他写了一信给我，信中说道：“我身体平安，惟膀子疼痛厉害，举箸提笔，诸多不便，大约大去之期不远矣。”我读到此处，在晶莹的泪光中，又看见那肥胖的、青布棉袍黑布马褂的背影。唉！我不知何时再能与他相见！ </p>  
-<div id="nav"  style="color:#F00; font-size:35px"></div>
-        </div>  
-    </div>  
-<div id="nav2"  ></div>
-</body>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/swiper-3.3.1.min.css" />
+		<!--  -->
+		<link rel="stylesheet" href="index/css/ui.css">
+		<link rel="stylesheet" href="css/layer.css">
+		<link rel="stylesheet" href="css/xl.css">
+		<style type="text/css">
+			.nav-tabbar-tab .tab-button:before {
+				border-right: 2px solid #ddd;
+			}
+
+			html,
+			body {
+				height: 100%;
+				font-family: "微软雅黑";
+			}
+
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			a {
+				color: #428bca;
+				text-decoration: none;
+			}
+
+			a:hover,
+			a:focus {
+				color: #2a6496;
+				text-decoration: underline;
+			}
+
+			a:focus {
+				outline: thin dotted;
+				outline: 5px auto -webkit-focus-ring-color;
+				outline-offset: -2px;
+			}
+
+			.padd_40 {
+				padding-top: 80px;
+				background: #F5F5F5;
+				overflow-x: hidden;
+			}
+
+			.a {
+				text-align: center;
+				line-height: 40px;
+				position: fixed;
+				top: 0;
+				left: 0;
+				width: 100%;
+				z-index: 10;
+				border-bottom: 1px #ccc solid;
+				background: #f50;
+				color: #fff;
+			}
+
+			.tab {
+				display: flex;
+				line-height: 40px;
+				position: fixed;
+				top: 40px;
+				width: 100%;
+				z-index: 10;
+				border-bottom: 1px #ccc solid;
+			}
+
+			.tab a {
+				width: 33.333333%;
+				background: #fff;
+				text-align: center;
+			}
+
+			.tab .active {
+				border-bottom: 1px #f50 solid;
+				color: #f50;
+			}
+
+			.panel {
+				margin: 0;
+			}
+
+			.refreshtip {
+				position: absolute;
+				left: 0;
+				width: 100%;
+				margin: 10px 0;
+				text-align: center;
+				color: #999;
+			}
+
+			.swiper-container {
+				overflow: visible;
+			}
+
+			.loadtip {
+				display: block;
+				width: 100%;
+				line-height: 40px;
+				height: 40px;
+				text-align: center;
+				color: #999;
+				border-top: 1px solid #ddd;
+			}
+
+			.swiper-container,
+			.w {
+				height: calc(100vh - 120px);
+			}
+
+			.swiper-slide {
+				height: auto;
+			}
+
+			.text-center {
+				text-align: center;
+			}
+
+			.list-group {
+				padding-left: 0;
+				margin-bottom: 20px;
+			}
+
+			.list-group-item {
+				position: relative;
+				display: block;
+				padding: 10px 15px;
+				margin-bottom: -1px;
+				background-color: #fff;
+				border: 1px solid #ddd;
+			}
+
+			.list-group-item:first-child {
+				border-top-left-radius: 4px;
+				border-top-right-radius: 4px;
+			}
+		</style>
+	</head>
+	<body class="padd_40">
+		<div class="Top-location">
+			<div class="nav-tabbar nav-tabbar-tab" style="border-color: #5f85cf;">
+				<a class="tab-button active" href="javascript:void(0);" onclick="tz()" style="background-color:#5f85cf;">部门消息</a>
+				<a class="tab-button " href="javascript:void(0);" onclick="tz_cgj()" style="color: #5f85cf;">城管局消息</a>
+				<!-- <a class="tab-button " href="javascript:void(0);" onclick="lsxx()" style="color: #5f85cf;">历史消息</a> -->
+			</div>
+		</div>
+		<div class="swiper-container" style="background: #fff;">
+			<!-- <div class="refreshtip">下拉可以刷新</div> -->
+			<div class="swiper-wrapper w">
+				<div class="swiper-slide d">
+					<div class="init-loading list-group-item text-center" style="display: none;font-size:13px;border:none">下拉可以刷新</div>
+					<div class="swiper-container2">
+						<div class="swiper-wrapper">
+							<div class="swiper-slide list-group">
+								<div class="scroll">
+									<!-- 内容 begin-->
+									<div class="address-tel-module" id="msg">
+										<!--  -->
+										<main class="parent">
+											<p class="refreshText" style="text-align: center;"></p>
+											<!--  -->
+											<div v-for="(object,index) in objects">
+												<div class="address-module">
+													<div class="address-left">
+														<h2>{{object.title | spittitle}}</h2>
+														<p><i>{{object.msgTime}}</i></p>
+														<p><i>{{object.msg | spitmsg}}</i><em></em></p>
+													</div>
+												</div>
+											</div>
+										</main>
+									</div>
+								</div>
+								<!-- 内容 End-->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="loadtip"></div>
+			<div class="swiper-scrollbar"></div>
+		</div>
+
+		<div class="tab-bar tab-bottom" style="background-color: #f2f2f2;">
+			<a class="tab-button " href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				 class="tab-button-txt">首页</span></a>
+			<a class="tab-button active" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz2"
+				 style="background-size:25px"></i><span class="tab-button-txt">通知</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
+		</div>
+		<script src="js/jquery-2.1.4.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/swiper.jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="js/zlys.js"></script>
+		<script type="text/javascript" src="js/layer.js"></script>
+		<script type="text/javascript" src="js/vue.js"> </script>
+		<script type="text/javascript">
+			var loadFlag = true;
+			var oi = 0;
+			var mySwiper = new Swiper('.swiper-container', {
+				direction: 'vertical',
+				scrollbar: '.swiper-scrollbar',
+				slidesPerView: 'auto',
+				mousewheelControl: true,
+				freeMode: true,
+				onTouchMove: function(swiper) { //手动滑动中触发
+					var _viewHeight = document.getElementsByClassName('swiper-wrapper')[0].offsetHeight;
+					var _contentHeight = document.getElementsByClassName('swiper-slide')[0].offsetHeight;
+
+					if (mySwiper.translate < 50 && mySwiper.translate > 0) {
+						$(".init-loading").html('下拉刷新...').show();
+						console.log(1);
+					} else if (mySwiper.translate > 50) {
+						$(".init-loading").html('释放刷新...').show();
+					}
+				},
+				onTouchEnd: function(swiper) {
+					var _viewHeight = document.getElementsByClassName('swiper-wrapper')[0].offsetHeight;
+					var _contentHeight = document.getElementsByClassName('swiper-slide')[0].offsetHeight;
+					// 下拉刷新
+					if (mySwiper.translate >= 50) {
+						$(".init-loading").html('正在加载...').show();
+						loadFlag = true;
+						setTimeout(function() {
+							$(".refreshtip").show(0);
+							$(".init-loading").html('加载完成！');
+							setTimeout(function() {
+								$(".init-loading").html('').hide();
+							}, 800);
+							$(".loadtip").show(0);
+							msg.reload();
+							//刷新操作
+							mySwiper.update(); // 重新计算高度;
+						}, 1000);
+					} else if (mySwiper.translate >= 0 && mySwiper.translate < 50) {
+						$(".init-loading").html('').hide();
+					}
+					return false;
+				}
+			});
+			var mySwiper2 = new Swiper('.swiper-container2', {
+				onTransitionEnd: function(swiper) {
+
+					$('.w').css('transform', 'translate3d(0px, 0px, 0px)')
+					$('.swiper-container2 .swiper-slide-active').css('height', 'auto').siblings('.swiper-slide').css('height',
+						'0px');
+					mySwiper.update();
+
+					$('.tab a').eq(mySwiper2.activeIndex).addClass('active').siblings('a').removeClass('active');
+				}
+
+			});
+			$('.tab a').click(function() {
+
+				$(this).addClass('active').siblings('a').removeClass('active');
+				mySwiper2.slideTo($(this).index(), 500, false)
+
+				$('.w').css('transform', 'translate3d(0px, 0px, 0px)')
+				$('.swiper-container2 .swiper-slide-active').css('height', 'auto').siblings('.swiper-slide').css('height', '0px');
+				mySwiper.update();
+			});
+
+			var msg = new Vue({
+				el: '#msg',
+				data: {
+					objects: [],
+				},
+				filters: {
+					spitmsg: function(obj) {
+						return obj.substring(0, 75);
+					},
+					spittitle: function(obj) {
+						return obj.substring(0, 10);
+					}
+				},
+				created: function() {
+					var self = this;
+					$.post(initUrl + "/app/driver/msg", {}, function(obj) {
+						if (obj.state == 1) {
+							self.objects = obj.other;
+						} else {
+							loginOut();
+						}
+					})
+				},
+				methods: {
+					reload: function() {
+						var self = this;
+						$.post(initUrl + "/app/driver/msg", {}, function(obj) {
+							if (obj.state == 1) {
+								self.objects = obj.other;
+							} else {
+								loginOut();
+							}
+						})
+					}
+				}
+			});
+		</script>
+	</body>
 </html>
