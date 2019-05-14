@@ -84,7 +84,7 @@
 			},
 			created: function() {
 				var self = this;
-				$.post(initUrl + "/app/driver/msg", {}, function(obj) {
+				$.post(initUrl + "/app/driver/msgByAdmin", {}, function(obj) {
 					if (obj.state == 1) {
 						self.objects = obj.other;
 					} else {
@@ -95,7 +95,7 @@
 			methods: {
 				reload: function() {
 					var self = this;
-					$.post(initUrl + "/app/driver/msg", {}, function(obj) {
+					$.post(initUrl + "/app/driver/msgByAdmin", {}, function(obj) {
 						if (obj.state == 1) {
 							self.objects = obj.other;
 						} else {

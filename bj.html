@@ -4,16 +4,9 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title></title>
-		<link rel="stylesheet" href="index/css/ui.css">
 		<!-- zlys -->
-		<script type="text/javascript" src="js/zlys.js"></script>
-		<script type="text/javascript" src="js/layer.js"></script>
+		<link rel="stylesheet" href="index/css/ui.css">
 		<link rel="stylesheet" href="css/layer.css" />
-		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
-		<script type="text/javascript" src="js/common.js"></script>
-		<script src="js/mui.min.js"></script>
-		<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
-
 	</head>
 	<body class="android">
 		<div class="scroll-content">
@@ -26,9 +19,6 @@
 				<div class="my-info" style="margin-top: -160px;">
 					<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
 					<span class="my-vip" style="background:none;font-weight: bolder;">平台报警</span>
-				</div>
-
-				<div id="allmap" class="dwz-bmap" style="height: 200px; overflow:hidden">
 				</div>
 
 				<div class="panel-content item-urgent item-urgent-s t-line">
@@ -53,6 +43,7 @@
 							<h3>400-000-1111</h3>
 						</div>
 					</a>
+					<!-- <div id="allmap" class="dwz-bmap" style="height: 200px; overflow:hidden"></div> -->
 				</div>
 			</div>
 		</div>
@@ -66,9 +57,13 @@
 				 class="tab-button-txt">设置</span></a>
 		</div>
 	</body>
+	<!-- zlys -->
 	<script type="text/javascript" src="js/zlys.js"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script type="text/javascript" src="js/common.js"></script>
+<!-- 	<script src="js/mui.min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
 	<script type="text/javascript">
 	// 百度地图API功能
 	var map = new BMap.Map("allmap");
@@ -82,6 +77,6 @@
 			map.addOverlay(mk);
 			map.panTo(r.point);
 		}
-	},{enableHighAccuracy: true})
+	},{enableHighAccuracy: true}) -->
 </script>
 </html>

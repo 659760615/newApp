@@ -4,13 +4,10 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title></title>
-		<link rel="stylesheet" href="index/css/ui.css">
 		<!-- zlys -->
+		<link rel="stylesheet" href="index/css/ui.css">
 		<link rel="stylesheet" href="css/layer.css" />
 		<link rel="stylesheet" href="zlys/css/index.css" />
-		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
-		<script type="text/javascript" src="js/common.js"></script>
-		<script src="js/mui.min.js"></script>
 		<style>
 			.gd-item .gdnum{
 				width: 100%;
@@ -52,9 +49,10 @@
 					</a>
 					<a class="grids-grid" href="javascript:;" onclick="addkg()">
 						<div class="grids-grid-icon"><img src="images/lr.png" alt=""></div>
-						<p class="grids-grid-label">录入称重</p>
+						<p class="grids-grid-label">录入重量</p>
 					</a>
-					<a class="grids-grid" href="javascript:;" onclick="sb()">
+					<!-- <a class="grids-grid" href="javascript:;" onclick="sb()"> -->
+					<a class="grids-grid" href="javascript:;" onclick="hd()">
 						<div class="grids-grid-icon"><img src="images/cz.png" alt=""></div>
 						<p class="grids-grid-label">电子称重</p>
 					</a>
@@ -72,7 +70,6 @@
 				<div class="form-button t-line" id="trueShow" style="display:none;">
 					<button class="form-submit" style="background-color:#5f85cf" onclick="shouyun()">提 交</button>
 				</div>
-				</main>
 				<div class="devider b-line" id="addkg1" style="display:none;"></div>
 			</div>
 		</div>
@@ -85,8 +82,11 @@
 			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
 				 class="tab-button-txt">设置</span></a>
 		</div>
-		<div id="allmap" style="hidden">
+		<div id="allmap" style="hidden" />
 	</body>
+	<script type="text/javascript" src="js/common.js"></script>
+	<script type="text/javascript" src="js/hd.js"></script>
+	<script src="js/mui.min.js"></script>
 	<script type="text/javascript" src="js/zlys.js"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
@@ -235,5 +235,46 @@
 				}
 			})
 		}
+
+
+		function hd() {
+			layer.open({
+				type: 1,
+				content: text,
+				anim: 'up',
+				style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100px; padding:10px 0; border:none;'
+			});
+		}
+
+		var text = "";
+		text += "<div class=\"grids-contant\">";
+		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"openBluetooth()\">";
+		text += "						<div class=\"grids-grid-icon\"><img src=\"images/lanya.png\" alt=\"\"></div>";
+		text += "						<p class=\"grids-grid-label\">蓝牙初始化</p>";
+		text += "					</a>";
+		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"addkg()\">";
+		text += "						<div class=\"grids-grid-icon\"><img src=\"images/qupi.png\" alt=\"\"></div>";
+		text += "						<p class=\"grids-grid-label\">称重去皮</p>";
+		text += "					</a>";
+		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"hd()\">";
+		text += "						<div class=\"grids-grid-icon\"><img src=\"images/chengzhong.png\" alt=\"\"></div>";
+		text += "						<p class=\"grids-grid-label\">电子称重</p>";
+		text += "					</a>";
+		text += "				</div>";
 	</script>
 </html>
+
+<!-- <div class="grids-contant">
+					<a class="grids-grid" href="javascript:;" onclick="scan()">
+						<div class="grids-grid-icon"><img src="images/lanya.png" alt=""></div>
+						<p class="grids-grid-label">蓝牙初始化</p>
+					</a>
+					<a class="grids-grid" href="javascript:;" onclick="addkg()">
+						<div class="grids-grid-icon"><img src="images/qupi.png" alt=""></div>
+						<p class="grids-grid-label">称重去皮</p>
+					</a>
+					<a class="grids-grid" href="javascript:;" onclick="hd()">
+						<div class="grids-grid-icon"><img src="images/chengzhong.png" alt=""></div>
+						<p class="grids-grid-label">电子称重</p>
+					</a>
+				</div> -->

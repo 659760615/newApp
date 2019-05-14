@@ -6,7 +6,7 @@
 		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 		<link rel="stylesheet" href="zlys/css/style.css" />
 		<link rel="stylesheet" href="zlys/css/index.css" />
-		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+		<link rel="stylesheet" href="css/layer.css" />
 		<style>
 			.mui-toast-container {
 				line-height: 17px;
@@ -37,39 +37,28 @@
 	</head>
 	<body>
 		<div class="log-logo">
-			<img src="zlys/images/driver.ico" width="80" height="80">
+			<img src="zlys/images/driver.ico" width="80" height="50">
 		</div>
 		<div class="aui-code-box">
 			<div class="aui-code-line">
 				<input type="text" class="aui-code-line-input" name="username" value="" id="phone" autocomplete="off" placeholder="请输入手机号" />
 			</div>
-			<div class="aui-code-line aui-code-line-clear" style="margin-bottom:20px;">
-				<i class="aui-show operate-eye-open"></i>
+			<div class="aui-code-line aui-code-line-clear" style="margin-bottom:10px;">
+				<i class=" operate-eye-open"></i>
 				<input type="password" name="password" class="aui-code-line-input password" placeholder="请输入身份证后六位" value="" id="id">
 			</div>
 			<input type="button" class="aui-code-btn" value="登 录" style="background: #5f85cf;" onclick="login()">
 		</div>
-		<div style="margin-left: 25%;margin-top: 75%;">copyrigiht@四川智链云数科技有限公司</div>
+		<div style="margin-left: 19%;margin-top: 35%;">copyrigiht@四川智链云数科技有限公司</div>
 		<!-- zlys -->
+		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 		<script type="text/javascript" src="js/zlys.js"></script>
 		<script src="js/mui.min.js"></script>
 		<script type="text/javascript" src="js/layer.js"></script>
-		<link rel="stylesheet" href="css/layer.css" />
 		<script>
-			mui.init();
-		</script>
-		<script type="text/javascript">
-			$('.aui-show').click(function() {
-				let pass_type = $('input.password').attr('type');
-
-				if (pass_type === 'password') {
-					$('input.password').attr('type', 'text');
-					$('.aui-show').removeClass('operate-eye-open').addClass('operate-eye-close');
-				} else {
-					$('input.password').attr('type', 'password');
-					$('.aui-show').removeClass('operate-eye-close').addClass('operate-eye-open');
-				}
-			})
+			mui.plusReady(function() {
+				plus.screen.lockOrientation("portrait-primary");
+			});
 		</script>
 		<script>
 			var phone = localStorage.getItem("phone");

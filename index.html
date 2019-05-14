@@ -4,19 +4,16 @@
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title></title>
-		<link rel="stylesheet" href="index/css/ui.css">
 		<!-- zlys -->
-		<script type="text/javascript" src="js/zlys.js"></script>
-		<script type="text/javascript" src="js/layer.js"></script>
+		<link rel="stylesheet" href="index/css/ui.css">
 		<link rel="stylesheet" href="css/layer.css" />
-		<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 	</head>
-	<body class="android" >
+	<body class="android">
 		<div class="content" style="/*box-shadow: rgba(0, 0, 0, .50) 0 0 10px;transform: translate(50%, 0px);*/">
-			<div class="scroll-content dwz-scroll">
+			<div class="scroll-content dwz-scroll" style="overflow:auto">
 				<div class="scroll" id="all">
 					<div class="my-info" z-index="123123">
-						<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px);min-height:220px"></div>
+						<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px);min-height:170px"></div>
 						<img class="my-avatar" src="zlys/images/driver.ico">
 						<span class="name" id="name">中科绵投司机平台</span>
 					</div>
@@ -59,17 +56,17 @@
 									<div class="grids-grid-icon"><img src="images/bz.png" alt=""></div>
 									<p class="grids-grid-label">使用帮助</p>
 								</a>
-								<a class="grids-grid" href="test.html">
+								<!-- 								<a class="grids-grid" href="test.html">
 									<div class="grids-grid-icon"><img src="images/bz.png" alt=""></div>
 									<p class="grids-grid-label">使用帮助1</p>
-								</a>
+								</a> -->
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-		<div class="tab-bar tab-bottom" >
+		<div class="tab-bar tab-bottom">
 			<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
@@ -79,4 +76,13 @@
 				 class="tab-button-txt">设置</span></a>
 		</div>
 	</body>
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script type="text/javascript" src="js/mui.min.js"> </script>
+	<script>
+		mui.plusReady(function() {
+			plus.screen.lockOrientation("portrait-primary");
+		});
+	</script>
 </html>
