@@ -21,7 +21,7 @@
 					</div>
 					<div class="my-info" style="margin-top: -160px;">
 						<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
-						<span class="my-vip" style="background:none;font-weight: bolder;">收运请求</span>
+						<span class="my-vip" style="background:none;font-weight: bolder;">收运订单</span>
 					</div>
 				</div>
 				<!-- 内容 End -->
@@ -47,7 +47,7 @@
 											<span>{{object.organization}}</span>
 										</div>
 										<div class="comr">
-											<span>等待收运</span>
+											<span>收运中</span>
 											<i class="icon-e902"></i>
 										</div>
 									</a>
@@ -61,11 +61,11 @@
 			</div>
 		</div>
 		<div class="tab-bar tab-bottom" style="background-color: #f2f2f2;">
-			<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+			<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
 				 class="tab-button-txt">通知</span></a>
-			<a class="tab-button active " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span
+			<a class="tab-button" href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span
 				 class="tab-button-txt">等待收运</span></a>
 			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
 				 class="tab-button-txt">设置</span></a>
@@ -83,7 +83,7 @@
 			},
 			created: function() {
 				var self = this;
-				$.post(initUrl + "/app/driver/waitingColl", {}, function(obj) {
+				$.post(initUrl + "/app/driver/myColl", {}, function(obj) {
 					if (obj.state == 0) {
 						muiHref("login.html");
 					}
@@ -93,18 +93,18 @@
 			methods: {
 				updateColl: function(id, name) {
 					layer.open({
-						content: '前去收运',
+						content: '取消收运',
 						btn: ['确认', '取消'],
 						skin: 'footer',
 						yes: function(index) {
-							$.post(initUrl + "/app/driver/updateCollById", {
+							$.post(initUrl + "/app/driver/removeCollById", {
 								id: id
 							}, function(obj) {
 								if (obj.state == 0) {
 									muiHref("login.html");
 								} else {
+									location.reload();
 									layer.close(index);
-									myColl();
 								}
 							})
 						}
@@ -131,7 +131,7 @@
 							sb +=
 								'<div class="nav-tabbar nav-tabbar-tab" style="border-color: #5f85cf;margin-left:-10px;margin-top:-15px;width:103%">';
 							sb += '							<a class="tab-button active" href="javascript:void(0);" onclick="qqsy(' + o.id +
-								')" style="background-color:#5f85cf;">前去收运</a';
+								')" style="background-color:#5f85cf;">取消收运订单</a';
 							sb += '						</div>';
 							//页面层
 							layer.open({

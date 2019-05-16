@@ -86,6 +86,10 @@ function dengdai(){
 	muiHref("dengdai.html");
 }
 
+function myColl(){
+	muiHref("myColl.html");
+}
+
 //格式化CST日期的字串
 function formatCSTDate(strDate, format) {
 	return formatDate(new Date(strDate), format);
@@ -121,4 +125,16 @@ function formatDate(date, format) {
 	return format.replace(/([a-z])(\1)*/ig, function(m) {
 		return cfg[m];
 	});
+}
+
+window.onload = function() {
+	zlysAll();
+}
+
+function zlysAll(){
+	$.post(initUrl + "/app/driver/isOnline", {}, function(obj) {
+		if(obj.state == 0){
+			muiHref("login.html");
+		}
+	})
 }

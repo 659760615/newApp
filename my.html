@@ -8,7 +8,7 @@
 		<link rel="stylesheet" href="css/layer.css" />
 		<link rel="stylesheet" href="index/css/ui.css">
 	</head>
-	
+
 	<body class="android">
 		<div class="scroll-content">
 			<div class="scroll">
@@ -19,21 +19,21 @@
 				<div>
 					<div class="aui-list-cells">
 						<div class="devider b-line"></div>
-						<a href="javascript:void(0);"  class="aui-list-cell" onclick="clear_pwd()">
+						<a href="javascript:void(0);" class="aui-list-cell" onclick="clear_pwd()">
 							<div class="aui-list-cell-fl"><img src="images/set.png"></div>
 							<div class="aui-list-cell-cn">设置</div>
 						</a>
 						<div class="devider b-line"></div>
-						<a href="javascript:;" class="aui-list-cell">
+						<a href="javascript:;" class="aui-list-cell" onclick="idea_back()">
 							<div class="aui-list-cell-fl"><img src="index/images/icon-png/icon-n-5.png"></div>
 							<div class="aui-list-cell-cn">意见反馈</div>
 							<div class="aui-list-cell-fr"></div>
 						</a>
-						<a href="javascript:;" class="aui-list-cell">
+						<!-- 					<a href="javascript:;" class="aui-list-cell">
 							<div class="aui-list-cell-fl"><img src="index/images/icon-png/icon-n-6.png"></div>
 							<div class="aui-list-cell-cn">点击好评</div>
 							<div class="aui-list-cell-fr"></div>
-						</a>
+						</a> -->
 						<div class="devider b-line"></div>
 						<a href="javascript:;" class="aui-list-cell" onclick="loginOut()">
 							<div class="aui-list-cell-fl" style="margin-left: 3px;"><img src="index/images/icon-png/out.png"></div>
@@ -47,17 +47,54 @@
 
 			</div>
 		</div>
-		<div class="tab-bar tab-bottom" >
+		<div class="tab-bar tab-bottom">
 			<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
 				 class="tab-button-txt">通知</span></a>
-			<a class="tab-button " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">等待收运</span></a>
-			<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz1" style="background-size:25px"></i><span
-				 class="tab-button-txt">设置</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span
+				 class="tab-button-txt">等待收运</span></a>
+			<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz1"
+				 style="background-size:25px"></i><span class="tab-button-txt">设置</span></a>
 		</div>
 	</body>
 	<script type="text/javascript" src="js/zlys.js"></script>
 	<script type="text/javascript" src="js/layer.js"></script>
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script>
+		function idea_back() {
+			var sb =
+				'						<textarea class="form-control" id="content" rows="16" style="max-height: 101px;width: 100%;margin-top:-9px" placeholder="请输入您的意见"></textarea>';
+			sb +=
+				'<div class="nav-tabbar nav-tabbar-tab" style="border-color: #5f85cf;margin-left:-10px;margin-top:-15px;width:103%">';
+			sb +=
+				'							<a class="tab-button active" href="javascript:void(0);" onclick="idea_t()" style="background-color:#5f85cf;">提交</a';
+			sb += '						</div>';
+
+			layer.open({
+				type: 1,
+				content: sb,
+				anim: 'up',
+				style: 'position:fixed; bottom:0; left:0; width: 100%; height: 123px; padding:10px 0; border:none;'
+			});
+		}
+
+		function idea_t() {
+			var val = $("#content").val();
+			if(val == "" || val == null ){
+				layer.open({
+					content: '不能为空',
+					skin: 'msg',
+					time: 2 //2秒后自动关闭
+				});
+			}else{
+				//提示
+				layer.open({
+					content: '提交成功',
+					skin: 'msg',
+					time: 2 //2秒后自动关闭
+				});
+			}
+		}
+	</script>
 </html>

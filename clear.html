@@ -33,7 +33,8 @@
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
 				 class="tab-button-txt">通知</span></a>
-			<a class="tab-button " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">等待收运</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span
+				 class="tab-button-txt">等待收运</span></a>
 			<a class="tab-button active" href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz1"
 				 style="background-size:25px"></i><span class="tab-button-txt">设置</span></a>
 		</div>
@@ -43,9 +44,11 @@
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 	<script>
 		function clearAll() {
+			//底部对话框
 			layer.open({
-				content: '您确定要清理缓存并退出登录吗？',
-				btn: ['清理', '不要'],
+				content: '您确定要清理缓存并退出登录吗',
+				btn: ['删除', '取消'],
+				skin: 'footer',
 				yes: function(index) {
 					localStorage.removeItem('phone');
 					localStorage.removeItem('id');
