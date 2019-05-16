@@ -78,7 +78,7 @@
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
 				 class="tab-button-txt">通知</span></a>
-			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">等待收运</span></a>
 			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
 				 class="tab-button-txt">设置</span></a>
 		</div>
@@ -238,6 +238,16 @@
 
 
 		function hd() {
+			
+			if (state == 0) {
+				layer.open({
+					content: '请先完成商户扫描',
+					skin: 'msg',
+					time: 1
+				});
+				return;
+			}
+			
 			layer.open({
 				type: 1,
 				content: text,
@@ -248,13 +258,13 @@
 
 		var text = "";
 		text += "<div class=\"grids-contant\">";
+		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"guanbi()\">";
+		text += "						<div class=\"grids-grid-icon\"><img src=\"images/gb.png\" alt=\"\"></div>";
+		text += "						<p class=\"grids-grid-label\">关闭蓝牙</p>";
+		text += "					</a>";
 		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"openBluetooth()\">";
 		text += "						<div class=\"grids-grid-icon\"><img src=\"images/lanya.png\" alt=\"\"></div>";
-		text += "						<p class=\"grids-grid-label\">蓝牙初始化</p>";
-		text += "					</a>";
-		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"addkg()\">";
-		text += "						<div class=\"grids-grid-icon\"><img src=\"images/qupi.png\" alt=\"\"></div>";
-		text += "						<p class=\"grids-grid-label\">称重去皮</p>";
+		text += "						<p class=\"grids-grid-label\">蓝夜搜索</p>";
 		text += "					</a>";
 		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"hd()\">";
 		text += "						<div class=\"grids-grid-icon\"><img src=\"images/chengzhong.png\" alt=\"\"></div>";

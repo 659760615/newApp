@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="index/css/ui.css">
+		<link rel="stylesheet" href="css/layer.css" />
+		<link rel="stylesheet" href="zlys/css/index.css" />
+	</head>
+	<body>
+		<div class="content">
+
+			<div class="view-container top-tab">
+				<!-- 内容 begin -->
+				<div class="Top-location">
+					<div class="header home-header">
+						<div class="toolbar statusbar-padding active" style="margin-top: 2.3%;">
+							<button class="bar-button current-city" onclick="index()"><i class="icon icon-newback" style="right: 40%;"></i></button>
+						</div>
+					</div>
+					<div class="my-info" style="margin-top: -160px;">
+						<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
+						<span class="my-vip" style="background:none;font-weight: bolder;">当日预警</span>
+					</div>
+				</div>
+				<!-- 内容 End -->
+				<div class="scroll-content dwz-scroll" style="overflow:auto;margin-left: -35px;width: 120%;">
+					<div class="scroll">
+						<!-- 内容 begin-->
+						<div class="scroll">
+							<div class="item-introduce">
+								<div class="user-icolist" id="sytj">
+									<h3>&nbsp;</h3>
+									<a href="javascript:void(0);" class="item-name" >
+										<div class="coml">
+											<span>电子围栏:</span>
+										</div>
+										<div class="comr">
+											<span v-if="object.late == null">未设置</span>
+											<span v-else>{{object.electronicArea}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+									<a href="javascript:void(0);" class="item-name" >
+										<div class="coml">
+											<span>迟到次数:</span>
+										</div>
+										<div class="comr">
+											<span v-if="object.early == 0">正常</span>
+											<span v-else>{{object.early}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+									<a href="javascript:void(0);" class="item-name" >
+										<div class="coml">
+											<span>早退次数:</span>
+										</div>
+										<div class="comr">
+											<span v-if="object.late == 0">正常</span>
+											<span v-else>{{object.late}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+									<a href="javascript:void(0);" class="item-name" >
+										<div class="coml">
+											<span>超速次数:</span>
+										</div>
+										<div class="comr">
+											<span v-if="object.speed == 0">正常</span>
+											<span v-else>{{object.speed}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+									<a href="javascript:void(0);" class="item-name" >
+										<div class="coml">
+											<span>违规停留:</span>
+										</div>
+										<div class="comr">
+											<span v-if="object.stay == 0">正常</span>
+											<span v-else>{{object.stay}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+									<a href="javascript:void(0);" class="item-name" >
+										<div class="coml">
+											<span>超出区域:</span>
+										</div>
+										<div class="comr">
+											<span v-if="object.out == 0">正常</span>
+											<span v-else>{{object.out}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+									<a href="javascript:void(0);" class="item-name" >
+										<div class="coml">
+											<span>设备异常:</span>
+										</div>
+										<div class="comr">
+											<span v-if="object.un == 0">正常</span>
+											<span v-else>{{object.un}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+								</div>
+							</div>
+							<h3>&nbsp;</h3>
+						</div>
+						<!-- 内容 End-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-bar tab-bottom" style="background-color: #f2f2f2;">
+			<a class="tab-button active" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				 class="tab-button-txt">首页</span></a>
+			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
+				 class="tab-button-txt">通知</span></a>
+			<a class="tab-button " href="my-favorite.html"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">车辆状态</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/vue.js"> </script>
+	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script>
+		var my = new Vue({
+			el: '#sytj',
+			data: {
+				object: [],
+			},
+			created: function() {
+				var self = this;
+				$.post(initUrl + "/check/AppCheckByDriver", {}, function(obj) {
+					if (obj.state == 0) {
+						muiHref("login.html");
+					}
+					self.object = obj.other;
+				})
+			}
+		});
+	</script>
+</html>

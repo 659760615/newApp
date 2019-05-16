@@ -1,6 +1,6 @@
-var initUrl = "http://39.98.91.180:80";
+// var initUrl = "http://39.98.91.180:80";
 
-// var initUrl = "http://192.168.0.102:80";
+var initUrl = "http://192.168.1.21:80";
 
 // var initUrl = "http://192.168.3.4:80";
 
@@ -67,12 +67,23 @@ function tz_cgj() {
 	muiHref("tz_cgj.html");
 }
 
+function sytj() {
+	muiHref("sytj.html");
+}
+
 function sb() {
 	layer.open({
 		content: '此功能正在升级中',
 		skin: 'msg',
 		time: 1
 	});
+}
+function warnToday(){
+	muiHref("warnToday.html");
+}
+
+function dengdai(){
+	muiHref("dengdai.html");
 }
 
 //格式化CST日期的字串

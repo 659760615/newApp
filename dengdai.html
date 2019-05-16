@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title></title>
+		<link rel="stylesheet" href="index/css/ui.css">
+		<link rel="stylesheet" href="css/layer.css" />
+		<link rel="stylesheet" href="zlys/css/index.css" />
+	</head>
+	<body>
+		<div class="content">
+
+			<div class="view-container top-tab">
+				<!-- 内容 begin -->
+				<div class="Top-location">
+					<div class="header home-header">
+						<div class="toolbar statusbar-padding active" style="margin-top: 2.3%;">
+							<!-- <button class="bar-button current-city" onclick="index()"><i class="icon icon-newback" style="right: 40%;"></i></button> -->
+						</div>
+					</div>
+					<div class="my-info" style="margin-top: -160px;">
+						<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
+						<span class="my-vip" style="background:none;font-weight: bolder;">收运请求</span>
+					</div>
+				</div>
+				<!-- 内容 End -->
+				<div class="scroll-content dwz-scroll" style="overflow:auto;margin-left: -35px;width: 120%;">
+					<div class="scroll">
+						<!-- 内容 begin-->
+						<div class="scroll">
+							<div class="item-introduce">
+								<div class="user-icolist" id="sytj">
+									<a href="javascript:void(0);" class="item-name" style="position: fixed;background-color:#f2f2f2;margin-left: -2%;width: 102%;">
+										<div class="coml" style="padding-left: 15%;padding-top: 10px;">
+											<span>商户名称</span>
+										</div>
+										<div class="comr" style="padding-right: 5%;padding-top: 10px;">
+											<span>状态</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+									<h3>&nbsp;</h3>
+									<h3>&nbsp;</h3>
+									<a href="javascript:void(0);" @click="record(object.id)" class="item-name" v-for="(object,index) in objects">
+										<div class="coml">
+											<span>{{object.collTime}}</span>
+										</div>
+										<div class="comr">
+											<span>{{object.storeName}}</span>
+											<i class="icon-e902"></i>
+										</div>
+									</a>
+								</div>
+							</div>
+							<h3>&nbsp;</h3>
+						</div>
+						<!-- 内容 End-->
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="tab-bar tab-bottom" style="background-color: #f2f2f2;">
+			<a class="tab-button" href="javascript:void(0);" onclick="index()"><i class="tab-button-icon icon icon-home"></i><span
+				 class="tab-button-txt">首页</span></a>
+			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
+				 class="tab-button-txt">通知</span></a>
+			<a class="tab-button active " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">等待收运</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
+				 class="tab-button-txt">设置</span></a>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/zlys.js"></script>
+	<script type="text/javascript" src="js/layer.js"></script>
+	<script type="text/javascript" src="js/vue.js"> </script>
+	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
+	<script>
+		var my = new Vue({
+			el: '#sytj',
+			data: {
+				objects: [],
+			},
+			created: function() {
+				var self = this;
+				$.post(initUrl + "/app/driver/myRecord", {}, function(obj) {
+					if (obj.state == 0) {
+						muiHref("login.html");
+					}
+					self.objects = obj.other;
+				})
+			},
+			methods: {
+				record: function(id) {
+					$.post(initUrl + "/app/driver/recordById", {
+						id: id
+					}, function(obj) {
+						if (obj.state == 0) {
+							muiHref("login.html");
+						}
+
+						var text = "";
+						text += "<a href=\"\" class=\"gd-item\">";
+						text += "	<div class=\"text\"><span>商户名称：</span><em>"+obj.other.storeName+"</em></div>";
+						text += "    <div class=\"text\"><span>收运时间：</span><em>"+obj.other.collTime+"</em></div>";
+						text +="    <div class=\"text\"><span>收运人员：</span><em>"+obj.other.driver+"</em></div>";
+						text +="    <div class=\"text\"><span>收运部门：</span><em>"+obj.other.department+"</em></div>";
+						text +="    <div class=\"text\"><span>收运地址：</span><em>"+obj.other.loc+"</em></div>";
+						text +="    <div class=\"text\"><span>垃圾重量：</span><em>"+obj.other.kg+"(kg)</em></div>";
+						text += "</a>";
+
+						layer.open({
+							type: 1,
+							content: text,
+							anim: 'up',
+							style: 'position:fixed; bottom:0; left:0; width: 100%; height: 160px; padding:0px 0; border:none;'
+						});
+					})
+				}
+			}
+		});
+	</script>
+</html>
