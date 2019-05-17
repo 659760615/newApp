@@ -1,6 +1,6 @@
-// var initUrl = "http://39.98.91.180:80";
+var initUrl = "http://39.98.91.180:80";
 
-var initUrl = "http://192.168.1.21:80";
+// var initUrl = "http://192.168.0.104:80";
 
 // var initUrl = "http://192.168.3.4:80";
 
