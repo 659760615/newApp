@@ -300,7 +300,7 @@ function zlysBlueX(obj){
 	// var t = obj[29]+"，"+obj[30]+"，"+obj[31]+"，"+obj[32];
 	// var h = obj[25]+"+"+obj[26]+obj[27]+obj[28];
 	var zlyshd = obj.join('');
-	$.post("http://39.98.91.180:3000/zlys",{hd:zlyshd},function(obj){
+	$.get("http://39.98.91.180:3000/zlys",{hd:zlyshd},function(obj){
 		console.log(obj)
 	})
 }
