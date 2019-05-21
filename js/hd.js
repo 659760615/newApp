@@ -282,7 +282,6 @@ function buffer2hex(value){
 					}
 				if(v[i].toString(16) == '9f' && v[i+1].toString(16) == '15'){
 					statebbb = 0;
-					// console.log(bbb.length+":"+bbb);
 					/* 解释 */
 					zlysBlueX(bbb);
 					bbb = [];
@@ -298,77 +297,16 @@ function buffer2hex(value){
 
 
 function zlysBlueX(obj){
-	var t = obj[29]+obj[30]+obj[31]+obj[32];
-	// console.log(t);
-	var h = obj[25]+obj[26]+obj[27]+obj[28];
-	var hh = HexToSingle(h);
-	console.log(hh);
-	$("#kgNow").html("&nbsp" + hh);
+	// var t = obj[29]+"，"+obj[30]+"，"+obj[31]+"，"+obj[32];
+	// var h = obj[25]+"+"+obj[26]+obj[27]+obj[28];
+	var zlyshd = obj.join('');
+	$.post("http://39.98.91.180:3000/zlys",{hd:zlyshd},function(obj){
+		console.log(obj)
+	})
 }
 
 
 
-
-
-
-function HexToSingle(t) {
-    t = t.replace(/\s+/g, "");
-    if (t == "") {
-        return "";
-    }
-    if (t == "00000000") {
-        return "0";
-    }
-    if ((t.length > 8) || (isNaN(parseInt(t, 16)))) {
-        return "Error";
-    }
-    if (t.length < 8) {
-        t = FillString(t, "0", 8, true);
-    }
-    t = parseInt(t, 16).toString(2);
-    t = FillString(t, "0", 32, true);
-    var s = t.substring(0, 1);
-    var e = t.substring(1, 9);
-    var m = t.substring(9);
-    e = parseInt(e, 2) - 127;
-    m = "1" + m;
-    if (e >= 0) {
-        m = m.substr(0, e + 1) + "." + m.substring(e + 1)
-    }
-     else {
-        m = "0." + FillString(m, "0", m.length - e - 1, true)
-    }
-    if (m.indexOf(".") == -1) {
-        m = m + ".0";
-    }
-    var a = m.split(".");
-    var mi = parseInt(a[0], 2);
-    var mf = 0;
-    for (var i = 0; i < a[1].length; i++) {
-        mf += parseFloat(a[1].charAt(i)) * Math.pow(2, -(i + 1));
-    }
-    m = parseInt(mi) + parseFloat(mf);
-    if (s == 1) {
-        m = 0 - m;
-    }
-    return m;
-}
-
-function FillString(t, c, n, b) {
-    if ((t == "") || (c.length != 1) || (n <= t.length)) {
-        return t;
-    }
-    var l = t.length;
-    for (var i = 0; i < n - l; i++) {
-        if (b == true) {
-            t = c + t;
-        }
-         else {
-            t += c;
-        }
-    }
-    return t;
-}
 
 function guanbi(){
 	/* 停止搜索蓝牙 */

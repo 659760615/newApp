@@ -1,6 +1,6 @@
-var initUrl = "http://39.98.91.180:80";
+// var initUrl = "http://39.98.91.180:80";
 
-// var initUrl = "http://192.168.0.104:80";
+var initUrl = "http://192.168.0.102:80";
 
 // var initUrl = "http://192.168.3.4:80";
 
@@ -136,5 +136,9 @@ function zlysAll(){
 		if(obj.state == 0){
 			muiHref("login.html");
 		}
+	}).error(function(){
+			muiHref("login.html");
 	})
 }
+
+
