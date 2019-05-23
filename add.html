@@ -13,6 +13,9 @@
 				width: 100%;
 				height: 35px;
 			}
+			.form-button{
+				padding: 0;
+			}
 		</style>
 	</head>
 	<body class="android">
@@ -27,8 +30,7 @@
 					<div class="my-info-background" style="background-color:#5f85cf; -webkit-filter:blur(0px)"></div>
 					<span class="my-vip" style="background:none;font-weight: bolder;">收运登记</span>
 				</div>
-				<div class="devider b-line"></div>
-				<div class="item-exhibition">
+				<div class="item-exhibition" style="height: 256px;">
 					<div class="item-exhibition-title">
 						<h2 id="organization">商户名称:</h2>
 						<p>负责人:<em id="nameB"></em></p>
@@ -37,9 +39,9 @@
 						<p>收运人员:<em id="driver"></em></p>
 						<p>时间:<em id="now"></em></p>
 						<p>地址:<em id="locNow"></em></p>
-						<p>餐厨垃圾重量(kg):<em id="kgNow"></em></p>
+						<p>餐厨垃圾重量:<em id="kgNow"></em></p>
 					</div>
-					<div class="item-exhibition-h" onclick="addtrue()" id="wenzi">确认</div>
+					<div class="item-exhibition-h" onclick="addtrue()" id="wenzi" style="margin-top: 213px;width: 65%;margin-left:-185px ;">确认订单</div>
 				</div>
 				<div class="devider b-line"></div>
 				<div class="grids-contant">
@@ -47,30 +49,20 @@
 						<div class="grids-grid-icon"><img src="images/sys.png" alt=""></div>
 						<p class="grids-grid-label">扫一扫</p>
 					</a>
-					<a class="grids-grid" href="javascript:;" onclick="addkg()">
-						<div class="grids-grid-icon"><img src="images/lr.png" alt=""></div>
-						<p class="grids-grid-label">录入重量</p>
-					</a>
 					<!-- <a class="grids-grid" href="javascript:;" onclick="sb()"> -->
 					<a class="grids-grid" href="javascript:;" onclick="hd()">
 						<div class="grids-grid-icon"><img src="images/cz.png" alt=""></div>
-						<p class="grids-grid-label">电子称重</p>
+						<p class="grids-grid-label">电子录入</p>
+					</a>
+					<a class="grids-grid" href="javascript:;" onclick="addkg()">
+						<div class="grids-grid-icon"><img src="images/lr.png" alt=""></div>
+						<p class="grids-grid-label">手动录入</p>
 					</a>
 				</div>
 				<div class="devider b-line"></div>
-				<div class="list" id="addkg" style="display:none;">
-					<div class="item">
-						<div class="item-content">
-							<label class="name">重量:</label>
-							<input class="input" type="text" id="kg" placeholder="请输入餐厨垃圾重量">
-						</div>
-					</div>
-				</div>
-				<!-- <div class="form-button t-line" id="trueShow" > -->
-				<div class="form-button t-line" id="trueShow" style="display:none;">
-					<button class="form-submit" style="background-color:#5f85cf" onclick="shouyun()">提 交</button>
-				</div>
-				<div class="devider b-line" id="addkg1" style="display:none;"></div>
+			</div>
+			<div class="myapp-score">
+				<div id="demo2"></div>
 			</div>
 		</div>
 		<div class="tab-bar tab-bottom">
@@ -78,7 +70,8 @@
 				 class="tab-button-txt">首页</span></a>
 			<a class="tab-button" href="javascript:void(0);" onclick="tz()"><i class="tab-button-icon icon icon-tz" style="background-size:25px"></i><span
 				 class="tab-button-txt">通知</span></a>
-			<a class="tab-button " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span class="tab-button-txt">等待收运</span></a>
+			<a class="tab-button " href="javascript:void(0);" onclick="dengdai()"><i class="tab-button-icon icon icon-car"></i><span
+				 class="tab-button-txt">等待收运</span></a>
 			<a class="tab-button " href="javascript:void(0);" onclick="my()"><i class="tab-button-icon icon icon-sz2" style="background-size:25px"></i><span
 				 class="tab-button-txt">设置</span></a>
 		</div>
@@ -92,8 +85,12 @@
 	<script type="text/javascript" src="js/jquery_1.9.js"> </script>
 	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=LD93KDmWIlxj1MPIxmHs6qpNLv9dSNEU"></script>
 	<script>
+
 		var zlysHdAll;
 		var state = 0;
+		var zlyslayer;
+		var zlystrue;
+		var pingjia = 5;
 
 		function scan() {
 			if (state == 0) {
@@ -129,8 +126,8 @@
 					$("#department").html("&nbsp" + obj.other.department);
 					$("#driver").html("&nbsp" + obj.msg);
 					$("#now").html("&nbsp" + myNow);
-
-					// 百度地图API功能
+					
+							// 百度地图API功能
 					var map = new BMap.Map("allmap");
 					var geolocation = new BMap.Geolocation();
 					geolocation.getCurrentPosition(function(r) {
@@ -144,14 +141,13 @@
 							myGeo.getLocation(point, function(rs) {
 								var addComp = rs.addressComponents;
 								var address = addComp.province + addComp.city + addComp.district + addComp.street + addComp.streetNumber;
-								// alert("百度地址：" + address);
 								$("#locNow").html("&nbsp" + address);
-								state = 1;
 							});
 						}
 					}, {
 						enableHighAccuracy: true
 					})
+					state = 1;
 				}
 			})
 		}
@@ -165,17 +161,29 @@
 				});
 			}
 			if (state == 1) {
-				$("#addkg").show();
-				$("#addkg1").show();
+				var sb = '				<div class="list" id="addkg">';
+				sb += '					<div class="item">';
+				sb += '						<div class="item-content">';
+				sb += '							<label class="name">重量:</label>';
+				sb += '							<input class="input" type="text" id="kg" placeholder="请输入餐厨垃圾重量">';
+				sb += '						</div>';
+				sb += '					</div>';
+				sb += '				</div>';
+				zlyslayer = layer.open({
+					type: 1,
+					content: sb,
+					anim: 'up',
+					style: 'position:fixed; bottom:20px; left:0; width: 100%; height: 50px; padding: 0; border:none;'
+				});
+
+				$('#kg').bind('input propertychange', function() {
+					var now = $('#kg').val();
+					now = parseFloat(now);
+					now = now.toFixed(2);
+					$("#kgNow").html(now + "(kg)");
+				});
 			}
 		}
-
-		$(function() {
-			$('#kg').bind('input propertychange', function() {
-				var now = $('#kg').val();
-				$("#kgNow").html("&nbsp" + now);
-			});
-		})
 
 		function addtrue() {
 			if (state == 0) {
@@ -194,14 +202,23 @@
 				});
 				return;
 			}
-			$("#addkg").hide();
-			$("#addkg1").hide();
-			$("#trueShow").show();
 			$("#wenzi").html("已确认");
 			state = 3;
+			var sb = '<div class="form-button t-line" id="trueShow">';
+			sb += '					<button class="form-submit" style="background-color:#5f85cf" onclick="shouyun()">提 交</button>';
+			sb += '				</div>';
+			zlystrue = layer.open({
+				type: 1,
+				content: sb,
+				anim: 'up',
+				style: 'position:fixed; bottom:70px; left:-45px; width: 125%; height: 30px; padding:0; border:none;'
+			});
 		}
 
 		function shouyun() {
+			collId = 0;
+			var str = $("#kgNow").html();
+			var strs = str.split("(");
 			layer.open({
 				type: 2,
 				content: '收运录入中...',
@@ -210,7 +227,7 @@
 					$.post(initUrl + "/app/driver/add", {
 						phone: $("#phone").html(),
 						driver: $("#driver").html(),
-						kg: $("#kgNow").html(),
+						kg: "&nbsp" + strs[0],
 						loc: $("#locNow").html()
 					}, function(obj) {
 						if (obj.state == 1) {
@@ -219,7 +236,9 @@
 								skin: 'msg',
 								time: 1,
 								end: function() {
-									window.location.href = "index.html";
+									layer.close(zlystrue);
+									// window.location.href = "index.html";
+									pingjiaView(obj.other);
 								}
 							});
 						} else {
@@ -239,47 +258,107 @@
 
 
 		function hd() {
-			
-			// if (state == 0) {
-			// 	layer.open({
-			// 		content: '请先完成商户扫描',
-			// 		skin: 'msg',
-			// 		time: 1
-			// 	});
-			// 	return;
-			// }
-			
-			layer.open({
-				type: 1,
-				content: text,
-				anim: 'up',
-				style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100px; padding:10px 0; border:none;'
-			});
+
+			if (state == 0) {
+				layer.open({
+					content: '请先完成商户扫描',
+					skin: 'msg',
+					time: 1
+				});
+				return;
+			}
+			if (state == 1) {
+				var text = "";
+				text += "<div class=\"grids-contant\">";
+				text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"guanbi()\">";
+				text += "						<div class=\"grids-grid-icon\"><img src=\"images/gb.png\" alt=\"\"></div>";
+				text += "						<p class=\"grids-grid-label\">重启蓝牙</p>";
+				text += "					</a>";
+				text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"openBluetooth()\">";
+				text += "						<div class=\"grids-grid-icon\"><img src=\"images/lanya.png\" alt=\"\"></div>";
+				text += "						<p class=\"grids-grid-label\">蓝夜搜索</p>";
+				text += "					</a>";
+				text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"hdcz()\">";
+				text += "						<div class=\"grids-grid-icon\"><img src=\"images/chengzhong.png\" alt=\"\"></div>";
+				text += "						<p class=\"grids-grid-label\">电子称重</p>";
+				text += "					</a>";
+				text += "				</div>";
+				zlyslayer = layer.open({
+					type: 1,
+					content: text,
+					anim: 'up',
+					style: 'position:fixed; bottom:0; left:0; width: 100%; height: 100px; padding:10px 0; border:none;'
+				});
+			}
 		}
 
-		var text = "";
-		text += "<div class=\"grids-contant\">";
-		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"guanbi()\">";
-		text += "						<div class=\"grids-grid-icon\"><img src=\"images/gb.png\" alt=\"\"></div>";
-		text += "						<p class=\"grids-grid-label\">关闭蓝牙</p>";
-		text += "					</a>";
-		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"openBluetooth()\">";
-		text += "						<div class=\"grids-grid-icon\"><img src=\"images/lanya.png\" alt=\"\"></div>";
-		text += "						<p class=\"grids-grid-label\">蓝夜搜索</p>";
-		text += "					</a>";
-		text += "					<a class=\"grids-grid\" href=\"javascript:;\" onclick=\"hdcz()\">";
-		text += "						<div class=\"grids-grid-icon\"><img src=\"images/chengzhong.png\" alt=\"\"></div>";
-		text += "						<p class=\"grids-grid-label\">电子称重</p>";
-		text += "					</a>";
-		text += "				</div>";
+		function hdcz() {
+			if (zlysHdAll.length == 70) {
+				$.get(node_Url + "/zlys", {
+					hd: zlysHdAll
+				}, function(obj) {
+					disconnectDevice();
+					layer.close(zlyslayer);
+					zlysHdAll = '';
+					strs = obj.split(":");
+					var strss = strs[1].substring(0, 6);
+					$("#kgNow").html(strss + "(kg)");
+				})
+			}
+		}
 		
-		
-		function hdcz(){
-			console.log(zlysHdAll)
-			$.post(initUrl + "/app/driver/hdcz",{hd:zlysHdAll},function(){
-				
+		function pingjiaView(collId){
+			pingjia = 5;
+						var sb='<div class="baoxian">';
+			sb+='						<div class="list " id="shangyedisan">';
+			sb+='							<div class="list-left ">';
+			sb+='								<p class="list-blame b-line"></span>请对商家进行评价</p>';
+			sb+='								<ul id="third_wrap" class="" data-id="0">';
+			sb+='									<li><span class="selectcoll" data="1"></span>1分</li>';
+			sb+='<li><span class="selectcoll" data="2"></span>2分</li>';
+			sb+='<li><span class="selectcoll" data="3"></span>3分</li>';
+			sb+='<li><span class="selectcoll" data="4"></span>4分</li>';
+			sb+='<li><span class="back5 selectcoll" data="5"></span>5分(非常配合)</li>';
+			sb+='								</ul>';
+			sb+='							</div>';
+			sb+='						</div>';
+			sb+='					</div>';
+				sb += '					<button class="form-submit" style="background-color:#5f85cf"  onclick=\"pingjia_coll('+collId+')\">确  定</button>';
+			zlyslayer = layer.open({
+				type: 1,
+				content: sb,
+				anim: 'up',
+				style: 'position:fixed; bottom:0; left:0; width: 100%; height: 200px; padding:0px 0; border:none;'
+			});
+			
+			
+			$(".selectcoll").click(function(){
+				$(".selectcoll").each(function(){
+					$(this).removeClass("back5");
+				})
+			   $(this).addClass("back5");
+			   pingjia = $(this).attr("data");
 			})
 		}
+		
+		
+		function pingjia_coll(id){
+			$.post(initUrl+"/app/driver/pingJiaColl",{id:id,pingjia:pingjia},function(obj){
+				if (obj.state == 0) {
+					muiHref("login.html")
+				} else {
+					layer.open({
+						content: "评价完成",
+						skin: 'msg',
+						time: 1,
+						end: function() {
+							window.location.href = "index.html";
+						}
+					});
+				}
+			});
+		}
+		
 	</script>
 </html>
 

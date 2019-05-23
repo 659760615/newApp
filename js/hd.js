@@ -27,7 +27,8 @@ document.addEventListener('plusready', function(e) {
 				bds.push(device);
 			}
 		}
-		if (!bconnect && bds.length > 0) { // 默认选择最后一个
+		console.log(bds.length)
+		if ( bds.length > 0) { // 默认选择最后一个
 			var n = bds[bds.length - 1].name;
 
 			if (n.substr(0, 2) == "HD") {
@@ -119,16 +120,17 @@ function startDiscovery() {
 // 断开蓝牙设备
 function disconnectDevice() {
 	console.log(bconnect);
-	if (bconnect) {
+	// if (bconnect) {
+		var id = localStorage.getItem("ly");
 		plus.bluetooth.closeBLEConnection({
-			deviceId: deviceId,
+			deviceId: id,
 			success: function(e) {
-				console.log('关闭蓝牙连接:' + deviceId)
+				console.log('关闭蓝牙连接:' + id)
 				bconnect = false;
 			},
 			fail: function(e) {}
 		});
-	}
+	// }
 }
 
 // 关闭蓝牙
@@ -167,7 +169,7 @@ function connectDevice(obj) {
 			getServices(obj);
 		},
 		fail: function(e) {
-			plus.nativeUI.toast('连接失败! ');
+			plus.nativeUI.toast('连接失败');
 		}
 	});
 }
@@ -185,8 +187,9 @@ function stopDiscovery(){
 
 // 获取设备服务 
 function getServices(){
+	var id = localStorage.getItem("ly");
 	plus.bluetooth.getBLEDeviceServices({
-		deviceId: deviceId,
+		deviceId: id,
 		success: function(e){
 			var services = e.services;
 			if(services.length>0){
@@ -196,14 +199,15 @@ function getServices(){
 				if(bss.length>0){	// 默认选择最后一个服务
 					serviceId = bss[bss.length-1].uuid;
 					console.log('获取服务成功! '+serviceId);
+					plus.nativeUI.toast('连接中,请开始电子称重');
 					getCharacteristics();
 				}
 			}else{
-				console.log('获取服务列表为空?');
+				plus.nativeUI.toast('连接失败');
 			}
 		},
 		fail: function(e){
-			console.log('获取服务失败! '+JSON.stringify(e));
+			// plus.nativeUI.toast('连接失败');
 		}
 	});
 }
@@ -248,11 +252,12 @@ function getCharacteristics(){
 					wcharacteristicId = bscws[bscws.length-1].uuid;
 				}
 			}else{
-				console.log('获取特征值列表为空?');
+				plus.nativeUI.toast('连接失败');
 			}
 		},
 		fail: function(e){
-			console.log('获取特征值失败! '+JSON.stringify(e));
+			plus.nativeUI.toast('连接失败');
+
 		}
 	});
 }
@@ -266,7 +271,7 @@ function readValue(){
 			console.log('读取数据成功!');
 		},
 		fail: function(e){
-			plus.nativeUI.toast('读取数据失败! '+JSON.stringify(e));
+			plus.nativeUI.toast('连接失败');
 		}
 	});
 }
@@ -288,7 +293,11 @@ function buffer2hex(value){
 				}
 			}
 			if(statebbb == 1){
-				bbb.push(v[i].toString(16));
+				if(v[i].toString(16).length == 1){
+					bbb.push('0'+v[i].toString(16));
+				}else{
+					bbb.push(v[i].toString(16));
+				}
 			}
 		}
 		
@@ -297,12 +306,11 @@ function buffer2hex(value){
 
 
 function zlysBlueX(obj){
-	// var t = obj[29]+"，"+obj[30]+"，"+obj[31]+"，"+obj[32];
-	// var h = obj[25]+"+"+obj[26]+obj[27]+obj[28];
 	var zlyshd = obj.join('');
-	$.get("http://39.98.91.180:3000/zlys",{hd:zlyshd},function(obj){
-		console.log(obj)
-	})
+	zlysHdAll = zlyshd;
+	// $.get(node_Url+"/zlys",{hd:zlyshd},function(obj){
+	// 	console.log(obj);
+	// })
 }
 
 
@@ -310,7 +318,9 @@ function zlysBlueX(obj){
 
 function guanbi(){
 	/* 停止搜索蓝牙 */
-	stopDiscovery();
+	resetDevices();
+	// stopDiscovery();
 	disconnectDevice();
 	closeBluetooth();
+	plus.nativeUI.toast('重启成功');
 }

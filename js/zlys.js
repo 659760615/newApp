@@ -1,8 +1,13 @@
+/* 后台服务器 */
 // var initUrl = "http://39.98.91.180:80";
 
-// var initUrl = "http://192.168.0.102:80";
+var initUrl = "http://192.168.0.106:80";
 
-var initUrl = "http://192.168.3.4:80";
+// var initUrl = "http://192.168.3.4:80";
+
+
+/* 测试服务器node服务器 */
+var node_Url = "http://39.98.91.180:3000";
 
 function zlyslay(obj) {
 	layer.open({
