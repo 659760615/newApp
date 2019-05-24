@@ -1,7 +1,7 @@
 /* 后台服务器 */
 // var initUrl = "http://39.98.91.180:80";
 
-var initUrl = "http://192.168.0.106:80";
+var initUrl = "http://192.168.0.104:80";
 
 // var initUrl = "http://192.168.3.4:80";
 
@@ -82,6 +82,10 @@ function sb() {
 		skin: 'msg',
 		time: 1
 	});
+}
+function pingfen() {
+	muiHref("pingfen.html");
+
 }
 function warnToday(){
 	muiHref("warnToday.html");
